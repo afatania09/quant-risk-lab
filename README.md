@@ -1,39 +1,41 @@
 # Quant Risk Lab
 
-A tested Python risk engine demonstrating market, credit and counterparty risk
-analytics with a realistic multi-sector equity case study.
+[![Tests](https://github.com/afatania09/quant-risk-lab/actions/workflows/tests.yml/badge.svg)](https://github.com/afatania09/quant-risk-lab/actions/workflows/tests.yml)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-70e1c1)](https://www.python.org/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-438ca3)](LICENSE)
 
-## What this project demonstrates
+**A decision-oriented portfolio risk simulator built to demonstrate the technical
+work of a Principal Quantitative Analyst in export credit and operational
+research.**
 
-| Risk area | Implementation | Why it matters |
-|---|---|---|
-| Market risk | Historical, parametric and Monte Carlo VaR | Compares three common loss-estimation assumptions |
-| Tail risk | Expected Shortfall | Measures loss severity beyond the VaR threshold |
-| Model validation | VaR exception backtesting | Tests whether forecast losses are calibrated |
-| Stress testing | Historical worst days and factor shocks | Examines risks that ordinary distribution estimates can miss |
-| Credit risk | PD × LGD × EAD expected loss | Connects default likelihood to monetary loss |
-| Structural credit | Merton distance to default | Links firm asset value and leverage to default probability |
-| Counterparty risk | Discrete unilateral CVA | Prices discounted expected exposure to counterparty default |
-| Risk attribution | Euler component VaR | Identifies each holding's contribution to total portfolio risk |
-| Dynamic risk | Rolling and EWMA-filtered historical VaR | Adapts risk forecasts to changing volatility |
-| Model validation | Kupiec and Christoffersen tests | Tests coverage and clustering of VaR exceptions |
-| Portfolio credit | Gaussian-copula default simulation | Estimates expected, unexpected and tail credit loss |
-| XVA foundations | Bilateral CVA/DVA and collateral | Demonstrates counterparty and own-credit adjustments |
+![Export Credit Risk Lab dashboard](assets/export_credit_dashboard_preview.png)
 
-## Real-company case study
+The centrepiece is an interactive dashboard for a fictional £3.8bn export-credit
+portfolio. It converts deal-level assumptions into country-limit monitoring,
+correlated claims, tail risk, IFRS 9 ECL, pricing adequacy, reinsurance analysis,
+reverse stress testing and a downloadable committee report.
 
-The example portfolio contains **Apple, Microsoft, JPMorgan Chase, ExxonMobil,
-Johnson & Johnson and Walmart**. A $10 million allocation spans technology,
-banking, energy, healthcare and consumer defensives. Daily adjusted prices are
-downloaded at run time, so results use genuine co-movement, volatility and crisis
-periods rather than invented returns.
+> This independent educational project is not affiliated with UK Export Finance.
+> It does not reproduce UKEF's proprietary PRISM methodology, use UKEF data or
+> implement official OECD premium rules.
 
-This is a portfolio-risk illustration, not investment advice. Yahoo Finance data
-is convenient rather than institution-grade. The credit and CVA examples use
-clearly labelled illustrative inputs because proper bank models require bond/CDS,
-counterparty, netting, collateral and exposure data that are not fully public.
+## Why this is useful
 
-## Quick start
+The application is organised around real portfolio-management questions:
+
+- Where are country and sector concentrations building?
+- Which deals drive losses in severe simulations?
+- Which country limits are green, amber or breached?
+- How large are expected, unexpected and tail claims?
+- What deterioration in recovery assumptions exhausts risk capacity?
+- How does IFRS 9 ECL change across macroeconomic scenarios and stages?
+- Does illustrative premium cover expected loss, capital and operating cost?
+- Does reinsurance reduce tail loss enough to justify its cost?
+- How can results be communicated clearly to a risk committee?
+
+## Interactive dashboard
+
+Install and launch:
 
 ```bash
 git clone https://github.com/afatania09/quant-risk-lab.git
@@ -44,68 +46,96 @@ python -m venv .venv
 Activate the environment, then:
 
 ```bash
-pip install -e ".[dev,market-data]"
-pytest
-python examples/real_company_portfolio.py
-python examples/credit_and_cva.py
-python examples/advanced_risk_case_study.py
+pip install -e ".[dashboard]"
+streamlit run dashboard/app.py
 ```
 
-## Core equations
+The dashboard includes six decision views:
 
-For confidence level \(c\), historical VaR is the negative lower-tail P&L
-quantile:
+1. **Portfolio overview** — exposure, sector mix and deal-level tail contribution.
+2. **Country limits** — utilisation, headroom and traffic-light monitoring.
+3. **IFRS 9 ECL** — scenario-weighted 12-month and lifetime expected loss.
+4. **Pricing and reinsurance** — premium adequacy and risk-transfer comparison.
+5. **Reverse stress** — PD/LGD sensitivity and the threshold that breaches capacity.
+6. **Committee report** — concise findings and downloadable management information.
 
-\[
-\mathrm{VaR}_c=-Q_{1-c}(P\&L).
-\]
+Users may upload a compatible CSV; the [data dictionary](docs/data_dictionary.md)
+defines the required fields.
 
-Expected Shortfall is the average loss conditional on crossing that threshold:
+## Export-credit analytics
 
-\[
-\mathrm{ES}_c=-E[P\&L\mid P\&L\leq -\mathrm{VaR}_c].
-\]
+| Capability | Implementation |
+|---|---|
+| Portfolio claims | Monte Carlo latent-factor model with global, country, sector and obligor risk |
+| Concentration | Country, sector, product and conditional tail-risk attribution |
+| Exposure limits | Country utilisation, headroom and red/amber/green monitoring |
+| Reverse stress | Binary search for the LGD deterioration that breaches risk capacity |
+| IFRS 9 | Stage-sensitive, scenario-weighted 12-month and lifetime ECL |
+| Premium analysis | Expected loss + capital cost + operating cost adequacy |
+| Risk transfer | Quota-share and excess-of-loss reinsurance structures |
+| Reporting | Automated committee-style Markdown and CSV downloads |
+| Quality control | Schema validation, deterministic simulations and reconciliation tests |
 
-Expected credit loss is:
+The included dataset contains 24 entirely fictional deals across aviation,
+transport, energy, healthcare, telecommunications, technology and infrastructure.
+Real country names make concentration analysis intelligible; deal values and risk
+parameters do not describe actual UKEF business.
 
-\[
-\mathrm{ECL}=PD\times LGD\times EAD.
-\]
+## Wider quantitative risk library
 
-Discrete unilateral CVA is:
+The repository also retains a broader set of tested analytics:
 
-\[
-\mathrm{CVA}=(1-R)\sum_t DF_t\,EE_t\,\Delta PD_t.
-\]
+- Historical, parametric, Monte Carlo and filtered historical VaR
+- Expected Shortfall
+- Rolling VaR forecasts
+- Euler component VaR
+- Kupiec coverage and Christoffersen independence tests
+- Historical and hypothetical stress testing
+- PD × LGD × EAD expected loss
+- Merton structural default probability
+- Credit migration and Gaussian-copula portfolio losses
+- Unilateral and bilateral CVA/DVA with simplified collateral
 
-## Design choices and limitations
+These modules show general quantitative foundations; the export-credit dashboard
+shows how to turn them into a useful business process.
 
-- Every risk figure is returned as a positive monetary loss.
-- Parametric and Monte Carlo VaR currently assume normally distributed returns.
-- Historical VaR is distribution-free but assumes the observed window represents
-  future risk.
-- Linear position mapping is suitable for cash equities; options require
-  full-revaluation or delta-gamma extensions.
-- CVA is unilateral and does not yet model netting, collateral, wrong-way risk,
-  first-to-default dependence, wrong-way risk, FVA or MVA. The advanced bilateral
-  example adds simplified DVA and collateral mechanics.
-- Models are deliberately transparent and independently testable.
+## Run the analysis without the dashboard
 
-## Roadmap
+```bash
+pip install -e ".[dev]"
+pytest
+python examples/export_credit_case_study.py
+```
 
-- GARCH and extreme-value-theory tail models
-- Full-revaluation options VaR and Greeks-based P&L attribution
-- Multi-period credit migration valuation and concentration limits
-- Monte Carlo exposure profiles with netting and collateral
-- Bilateral CVA/DVA and funding valuation adjustment
-- Reproducible charts and an executive risk report
+## Model governance
 
-## Repository layout
+The project includes:
+
+- [Export-credit model card](docs/export_credit_model_card.md)
+- [UKEF role alignment](docs/ukef_role_alignment.md)
+- [Data dictionary](docs/data_dictionary.md)
+- [General model governance framework](docs/model_governance.md)
+- [Risk interview guide](docs/interview_guide.md)
+
+The design makes limitations visible. A Gaussian factor model, fixed PD/LGD
+assumptions and simplified reinsurance cannot substitute for approved production
+methodology, controlled data, independent validation or expert judgement.
+
+## Repository structure
 
 ```text
-src/quant_risk/    reusable model code
-examples/          executable market and credit case studies
-tests/             numerical and behavioural tests
-docs/              model governance and interview explanations
-.github/workflows  automated quality checks
+dashboard/                 interactive decision dashboard
+data/                      synthetic portfolio and IFRS 9 scenarios
+src/quant_risk/            reusable market, credit and export-risk engine
+examples/                  executable case studies
+tests/                     numerical, behavioural and reconciliation tests
+docs/                      model cards, governance and role alignment
+assets/                    generated visual preview
+.github/workflows/         automated tests and code-quality checks
 ```
+
+## Disclaimer
+
+This software is provided for education, research and portfolio demonstration.
+It is not financial, investment, accounting, regulatory, underwriting or
+professional advice. No liability is accepted for decisions made using it.

@@ -1,0 +1,25 @@
+deal_id,project,country,region,sector,product,ead_gbp_m,pd,lgd,guarantee_share,premium_rate,country_limit_gbp_m,maturity_years,ifrs9_stage,country_risk_grade
+EC001,Metro signalling upgrade,India,Asia,Transport,Buyer credit guarantee,320,0.018,0.45,0.85,0.021,950,8,1,4
+EC002,Offshore wind components,Taiwan,Asia,Renewable energy,Direct lending,210,0.012,0.40,0.90,0.017,500,7,1,3
+EC003,Regional hospital equipment,Egypt,MENA,Healthcare,Buyer credit guarantee,145,0.035,0.55,0.80,0.032,420,6,2,5
+EC004,Airport fleet renewal,Indonesia,Asia,Aviation,Buyer credit guarantee,280,0.028,0.55,0.85,0.030,650,10,1,5
+EC005,Grid modernisation,South Africa,Africa,Power,Direct lending,260,0.042,0.60,0.90,0.041,600,12,2,5
+EC006,Telecoms expansion,Kenya,Africa,Telecommunications,Export insurance,125,0.048,0.60,0.75,0.046,350,6,2,6
+EC007,Water treatment programme,Morocco,Africa,Water,Buyer credit guarantee,170,0.022,0.50,0.85,0.025,480,9,1,4
+EC008,Electric bus procurement,Brazil,Latin America,Transport,Direct lending,240,0.026,0.50,0.90,0.028,700,8,1,4
+EC009,Port logistics technology,Vietnam,Asia,Transport,Export insurance,135,0.020,0.48,0.80,0.023,520,5,1,4
+EC010,Satellite communications,Saudi Arabia,MENA,Telecommunications,Buyer credit guarantee,310,0.010,0.38,0.85,0.016,900,9,1,2
+EC011,Healthcare diagnostics,Mexico,Latin America,Healthcare,Export insurance,115,0.025,0.50,0.80,0.027,550,5,1,4
+EC012,Rail electrification,Türkiye,Europe and Central Asia,Transport,Direct lending,270,0.038,0.55,0.90,0.039,620,11,2,5
+EC013,Solar generation package,Jordan,MENA,Renewable energy,Buyer credit guarantee,155,0.032,0.52,0.85,0.033,380,8,1,5
+EC014,Food processing facility,Ghana,Africa,Manufacturing,Export insurance,90,0.055,0.65,0.75,0.052,260,5,2,6
+EC015,Data centre cooling,Malaysia,Asia,Technology,Export insurance,130,0.015,0.42,0.80,0.020,450,6,1,3
+EC016,Mining safety equipment,Chile,Latin America,Mining,Export insurance,105,0.018,0.48,0.75,0.022,500,5,1,3
+EC017,Gas network equipment,Iraq,MENA,Energy,Buyer credit guarantee,185,0.075,0.70,0.80,0.068,300,7,3,7
+EC018,University laboratory build,Kazakhstan,Europe and Central Asia,Education,Direct lending,140,0.030,0.55,0.90,0.032,400,9,1,5
+EC019,Marine engineering package,Philippines,Asia,Maritime,Buyer credit guarantee,165,0.027,0.52,0.85,0.029,430,7,1,4
+EC020,Medical manufacturing line,Poland,Europe and Central Asia,Healthcare,Export insurance,120,0.009,0.35,0.80,0.014,650,5,1,2
+EC021,Digital identity infrastructure,Rwanda,Africa,Technology,Direct lending,85,0.045,0.60,0.90,0.045,220,8,2,6
+EC022,Flood defence engineering,Bangladesh,Asia,Water,Buyer credit guarantee,150,0.052,0.62,0.85,0.050,360,10,2,6
+EC023,Industrial robotics package,Czechia,Europe and Central Asia,Manufacturing,Export insurance,95,0.008,0.35,0.75,0.013,550,4,1,2
+EC024,Cold-chain distribution,Colombia,Latin America,Logistics,Buyer credit guarantee,110,0.029,0.52,0.80,0.030,420,6,1,4

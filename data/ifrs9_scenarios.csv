@@ -1,0 +1,5 @@
+scenario,weight,pd_multiplier,lgd_multiplier
+Upside,0.15,0.75,0.90
+Base,0.50,1.00,1.00
+Downside,0.25,1.45,1.12
+Severe downside,0.10,2.25,1.30
