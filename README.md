@@ -4,9 +4,8 @@
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-70e1c1)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-438ca3)](LICENSE)
 
-**A decision-oriented portfolio risk simulator built to demonstrate the technical
-work of a Principal Quantitative Analyst in export credit and operational
-research.**
+**A decision oriented portfolio risk simulator built to demonstrate technical
+work in export credit and operational research.**
 
 ![Export Credit Risk Lab dashboard](assets/export_credit_dashboard_preview.png)
 
