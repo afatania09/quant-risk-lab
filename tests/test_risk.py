@@ -23,7 +23,7 @@ def test_all_var_methods_produce_positive_tail_risk(returns):
 
 
 def test_expected_loss_identity():
-    assert expected_credit_loss(0.02, 0.45, 10_000_000) == 90_000
+    assert expected_credit_loss(0.02, 0.45, 10_000_000) == pytest.approx(90_000)
 
 
 def test_safer_firm_has_lower_merton_pd():
@@ -40,5 +40,8 @@ def test_cva_matches_discrete_formula():
 
 
 def test_stress_contributions_reconcile():
-    result = apply_factor_shocks({"equity": 2_000_000, "rates": -50_000}, {"equity": -0.2, "rates": 1.5})
+    result = apply_factor_shocks(
+        {"equity": 2_000_000, "rates": -50_000},
+        {"equity": -0.2, "rates": 1.5},
+    )
     assert result["total"] == result["equity"] + result["rates"]
