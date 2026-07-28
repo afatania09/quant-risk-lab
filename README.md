@@ -14,6 +14,11 @@ analytics with a realistic multi-sector equity case study.
 | Credit risk | PD × LGD × EAD expected loss | Connects default likelihood to monetary loss |
 | Structural credit | Merton distance to default | Links firm asset value and leverage to default probability |
 | Counterparty risk | Discrete unilateral CVA | Prices discounted expected exposure to counterparty default |
+| Risk attribution | Euler component VaR | Identifies each holding's contribution to total portfolio risk |
+| Dynamic risk | Rolling and EWMA-filtered historical VaR | Adapts risk forecasts to changing volatility |
+| Model validation | Kupiec and Christoffersen tests | Tests coverage and clustering of VaR exceptions |
+| Portfolio credit | Gaussian-copula default simulation | Estimates expected, unexpected and tail credit loss |
+| XVA foundations | Bilateral CVA/DVA and collateral | Demonstrates counterparty and own-credit adjustments |
 
 ## Real-company case study
 
@@ -43,6 +48,7 @@ pip install -e ".[dev,market-data]"
 pytest
 python examples/real_company_portfolio.py
 python examples/credit_and_cva.py
+python examples/advanced_risk_case_study.py
 ```
 
 ## Core equations
@@ -81,15 +87,15 @@ Discrete unilateral CVA is:
 - Linear position mapping is suitable for cash equities; options require
   full-revaluation or delta-gamma extensions.
 - CVA is unilateral and does not yet model netting, collateral, wrong-way risk,
-  DVA, FVA or MVA.
+  first-to-default dependence, wrong-way risk, FVA or MVA. The advanced bilateral
+  example adds simplified DVA and collateral mechanics.
 - Models are deliberately transparent and independently testable.
 
 ## Roadmap
 
-- Rolling VaR forecasts, Kupiec and Christoffersen tests
-- Marginal/component VaR and Euler risk attribution
-- Filtered historical simulation with EWMA/GARCH volatility
-- Credit migration, transition matrices and portfolio loss simulation
+- GARCH and extreme-value-theory tail models
+- Full-revaluation options VaR and Greeks-based P&L attribution
+- Multi-period credit migration valuation and concentration limits
 - Monte Carlo exposure profiles with netting and collateral
 - Bilateral CVA/DVA and funding valuation adjustment
 - Reproducible charts and an executive risk report
@@ -100,5 +106,6 @@ Discrete unilateral CVA is:
 src/quant_risk/    reusable model code
 examples/          executable market and credit case studies
 tests/             numerical and behavioural tests
+docs/              model governance and interview explanations
 .github/workflows  automated quality checks
 ```
