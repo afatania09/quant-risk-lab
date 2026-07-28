@@ -68,3 +68,54 @@ def backtest_var(actual_pnl: np.ndarray, var_forecasts: np.ndarray) -> dict[str,
     n, x = pnl.size, int(breaches.sum())
     rate = x / n
     return {"observations": n, "breaches": x, "breach_rate": rate}
+
+
+def rolling_historical_var(
+    returns: pd.DataFrame,
+    positions: np.ndarray,
+    window: int = 250,
+    confidence: float = 0.99,
+) -> pd.Series:
+    """One-day-ahead rolling historical VaR forecasts."""
+    pnl = pd.Series(
+        _portfolio_pnl(returns, positions),
+        index=pd.DataFrame(returns).dropna().index,
+        name="pnl",
+    )
+    return -pnl.rolling(window).quantile(1.0 - confidence).shift(1)
+
+
+def filtered_historical_var_es(
+    returns: pd.DataFrame,
+    positions: np.ndarray,
+    confidence: float = 0.99,
+    decay: float = 0.94,
+) -> tuple[float, float]:
+    """Filtered historical simulation using EWMA volatility scaling."""
+    pnl = _portfolio_pnl(returns, positions)
+    variance = np.empty_like(pnl)
+    variance[0] = np.var(pnl, ddof=1)
+    for index in range(1, pnl.size):
+        variance[index] = decay * variance[index - 1] + (1.0 - decay) * pnl[index - 1] ** 2
+    volatility = np.sqrt(np.maximum(variance, np.finfo(float).eps))
+    standardized = pnl / volatility
+    scenarios = standardized * volatility[-1]
+    cutoff = np.quantile(scenarios, 1.0 - confidence)
+    return float(max(0.0, -cutoff)), float(max(0.0, -scenarios[scenarios <= cutoff].mean()))
+
+
+def component_parametric_var(
+    returns: pd.DataFrame,
+    positions: np.ndarray,
+    confidence: float = 0.99,
+) -> pd.Series:
+    """Euler decomposition of zero-mean delta-normal VaR by position."""
+    clean = pd.DataFrame(returns).dropna()
+    weights = np.asarray(positions, dtype=float)
+    covariance = clean.cov().to_numpy()
+    portfolio_sigma = float(np.sqrt(weights @ covariance @ weights))
+    if portfolio_sigma == 0:
+        raise ValueError("portfolio volatility must be positive")
+    z = norm.ppf(confidence)
+    contributions = z * weights * (covariance @ weights) / portfolio_sigma
+    return pd.Series(contributions, index=clean.columns, name="component_var")
