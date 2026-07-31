@@ -1,0 +1,738 @@
+country,iso3,year,indicator,value
+Bangladesh,BGD,2019,current_account,-0.839485005371136
+Bangladesh,BGD,2020,current_account,0.318940441964321
+Bangladesh,BGD,2021,current_account,-3.78969259910935
+Bangladesh,BGD,2022,current_account,-3.81010813041237
+Bangladesh,BGD,2023,current_account,-1.64602823544154
+Bangladesh,BGD,2024,current_account,-0.669466607987832
+Bangladesh,BGD,2025,current_account,-0.0524732355435052
+Bangladesh,BGD,2019,external_debt_gni,17.0856511809436
+Bangladesh,BGD,2020,external_debt_gni,18.8853836099419
+Bangladesh,BGD,2021,external_debt_gni,20.8766117836117
+Bangladesh,BGD,2022,external_debt_gni,20.2659753173734
+Bangladesh,BGD,2023,external_debt_gni,22.285488486933
+Bangladesh,BGD,2024,external_debt_gni,22.2547977203389
+Bangladesh,BGD,2019,gdp_growth,7.88191515117722
+Bangladesh,BGD,2020,gdp_growth,3.44801755122445
+Bangladesh,BGD,2021,gdp_growth,6.93867912442445
+Bangladesh,BGD,2022,gdp_growth,7.09982877575158
+Bangladesh,BGD,2023,gdp_growth,5.77511237007889
+Bangladesh,BGD,2024,gdp_growth,4.22325911250161
+Bangladesh,BGD,2025,gdp_growth,3.48990671836833
+Bangladesh,BGD,2019,inflation,5.59199639930629
+Bangladesh,BGD,2020,inflation,5.69107474746211
+Bangladesh,BGD,2021,inflation,5.54565430773473
+Bangladesh,BGD,2022,inflation,7.69695437176898
+Bangladesh,BGD,2023,inflation,9.8835030377921
+Bangladesh,BGD,2024,inflation,10.4657482763412
+Bangladesh,BGD,2025,inflation,8.7687628116114
+Bangladesh,BGD,2019,reserves_months,5.85933450460047
+Bangladesh,BGD,2020,reserves_months,8.65813724626272
+Bangladesh,BGD,2021,reserves_months,6.29023985723134
+Bangladesh,BGD,2022,reserves_months,4.18907976493715
+Bangladesh,BGD,2023,reserves_months,3.3558121828929
+Bangladesh,BGD,2024,reserves_months,3.07374348965567
+Bangladesh,BGD,2025,reserves_months,3.91092137452087
+Brazil,BRA,2019,current_account,-3.41429103072781
+Brazil,BRA,2020,current_account,-1.64103541830151
+Brazil,BRA,2021,current_account,-2.35822097223117
+Brazil,BRA,2022,current_account,-2.14967698505073
+Brazil,BRA,2023,current_account,-1.23139445763703
+Brazil,BRA,2024,current_account,-2.9880142706208
+Brazil,BRA,2025,current_account,-2.92630139201733
+Brazil,BRA,2019,external_debt_gni,31.1964144613097
+Brazil,BRA,2020,external_debt_gni,38.0076646022397
+Brazil,BRA,2021,external_debt_gni,35.2910131878973
+Brazil,BRA,2022,external_debt_gni,30.5621181630478
+Brazil,BRA,2023,external_debt_gni,28.628650184641
+Brazil,BRA,2024,external_debt_gni,28.6612661075538
+Brazil,BRA,2019,gdp_growth,1.22077782360842
+Brazil,BRA,2020,gdp_growth,-3.2767587964736
+Brazil,BRA,2021,gdp_growth,4.76260437908608
+Brazil,BRA,2022,gdp_growth,3.01669435393015
+Brazil,BRA,2023,gdp_growth,3.24165532906981
+Brazil,BRA,2024,gdp_growth,3.41931516501906
+Brazil,BRA,2025,gdp_growth,2.2857464902475
+Brazil,BRA,2019,inflation,3.73297621216894
+Brazil,BRA,2020,inflation,3.21176803803376
+Brazil,BRA,2021,inflation,8.30165975585673
+Brazil,BRA,2022,inflation,9.28010608956873
+Brazil,BRA,2023,inflation,4.59356282283204
+Brazil,BRA,2024,inflation,4.36746407652337
+Brazil,BRA,2025,inflation,5.01675279604836
+Brazil,BRA,2019,reserves_months,12.2312070465136
+Brazil,BRA,2020,reserves_months,14.9438769882272
+Brazil,BRA,2021,reserves_months,11.1402301211994
+Brazil,BRA,2022,reserves_months,8.33579218529621
+Brazil,BRA,2023,reserves_months,9.42965093795292
+Brazil,BRA,2024,reserves_months,7.95225602897552
+Brazil,BRA,2025,reserves_months,8.4209144130353
+Chile,CHL,2019,current_account,-5.21201190646601
+Chile,CHL,2020,current_account,-1.96248572878056
+Chile,CHL,2021,current_account,-7.29452522459608
+Chile,CHL,2022,current_account,-8.87430060140152
+Chile,CHL,2023,current_account,-3.10428872521174
+Chile,CHL,2024,current_account,-1.16817210444884
+Chile,CHL,2025,current_account,-1.21688011748722
+Chile,CHL,2019,gdp_growth,0.644223402631923
+Chile,CHL,2020,gdp_growth,-6.1396969411886
+Chile,CHL,2021,gdp_growth,11.3374032409913
+Chile,CHL,2022,gdp_growth,2.06391864254198
+Chile,CHL,2023,gdp_growth,0.677024831595858
+Chile,CHL,2024,gdp_growth,2.80512637106611
+Chile,CHL,2025,gdp_growth,2.45925474781374
+Chile,CHL,2019,inflation,2.55754475703327
+Chile,CHL,2020,inflation,3.04549084804326
+Chile,CHL,2021,inflation,4.52456838259144
+Chile,CHL,2022,inflation,11.643866711056
+Chile,CHL,2023,inflation,7.58168251407962
+Chile,CHL,2024,inflation,4.29763891572524
+Chile,CHL,2025,inflation,4.21293601694293
+Chile,CHL,2019,reserves_months,4.69728067944713
+Chile,CHL,2020,reserves_months,5.28711808990111
+Chile,CHL,2021,reserves_months,4.69423974456816
+Chile,CHL,2022,reserves_months,3.18145571608366
+Chile,CHL,2023,reserves_months,4.39461209765128
+Chile,CHL,2024,reserves_months,4.18812833070743
+Chile,CHL,2025,reserves_months,4.21740649827425
+Colombia,COL,2019,current_account,-4.5842751726606
+Colombia,COL,2020,current_account,-3.42772945914236
+Colombia,COL,2021,current_account,-5.6351694946032
+Colombia,COL,2022,current_account,-6.04054199360168
+Colombia,COL,2023,current_account,-2.26762349420469
+Colombia,COL,2024,current_account,-1.66760721722233
+Colombia,COL,2025,current_account,-2.37924247045499
+Colombia,COL,2019,external_debt_gni,44.0144816213322
+Colombia,COL,2020,external_debt_gni,58.195276425352
+Colombia,COL,2021,external_debt_gni,54.5702530730857
+Colombia,COL,2022,external_debt_gni,55.2901604295775
+Colombia,COL,2023,external_debt_gni,54.9698144239845
+Colombia,COL,2024,external_debt_gni,49.2038699846531
+Colombia,COL,2019,gdp_growth,3.18685539245533
+Colombia,COL,2020,gdp_growth,-7.18591413760859
+Colombia,COL,2021,gdp_growth,10.8011981904878
+Colombia,COL,2022,gdp_growth,7.32827729427979
+Colombia,COL,2023,gdp_growth,0.841819555752039
+Colombia,COL,2024,gdp_growth,1.49330728771066
+Colombia,COL,2025,gdp_growth,2.64201548985928
+Colombia,COL,2019,inflation,3.52301932741447
+Colombia,COL,2020,inflation,2.52663500084706
+Colombia,COL,2021,inflation,3.49505757399448
+Colombia,COL,2022,inflation,10.1772313546166
+Colombia,COL,2023,inflation,11.7359044948689
+Colombia,COL,2024,inflation,6.60908593728228
+Colombia,COL,2025,inflation,5.14222911946201
+Colombia,COL,2019,reserves_months,7.68978168444085
+Colombia,COL,2020,reserves_months,11.5419853283327
+Colombia,COL,2021,reserves_months,8.13634445223537
+Colombia,COL,2022,reserves_months,5.98792041600812
+Colombia,COL,2023,reserves_months,7.1661637402161
+Colombia,COL,2024,reserves_months,7.34464091398545
+Colombia,COL,2025,reserves_months,7.2960917611185
+Czechia,CZE,2019,current_account,0.356195094422181
+Czechia,CZE,2020,current_account,1.78520080795831
+Czechia,CZE,2021,current_account,-2.04624111898244
+Czechia,CZE,2022,current_account,-4.52048439437013
+Czechia,CZE,2023,current_account,-0.125406557037842
+Czechia,CZE,2024,current_account,1.69610102238123
+Czechia,CZE,2025,current_account,0.624791974567142
+Czechia,CZE,2019,gdp_growth,3.56577658128261
+Czechia,CZE,2020,gdp_growth,-5.30487955463876
+Czechia,CZE,2021,gdp_growth,4.02901832055149
+Czechia,CZE,2022,gdp_growth,2.8471706583814
+Czechia,CZE,2023,gdp_growth,0.0475803308973752
+Czechia,CZE,2024,gdp_growth,1.25131096245923
+Czechia,CZE,2025,gdp_growth,2.58046673293437
+Czechia,CZE,2019,inflation,2.84787595918041
+Czechia,CZE,2020,inflation,3.1612952849781
+Czechia,CZE,2021,inflation,3.83984491500146
+Czechia,CZE,2022,inflation,15.1001651468371
+Czechia,CZE,2023,inflation,10.6612601372427
+Czechia,CZE,2024,inflation,2.43531202435314
+Czechia,CZE,2025,inflation,2.45996367838865
+Czechia,CZE,2019,reserves_months,9.06849990975418
+Czechia,CZE,2020,reserves_months,11.3938793048782
+Czechia,CZE,2021,reserves_months,9.363554473226
+Czechia,CZE,2022,reserves_months,6.83372087751841
+Czechia,CZE,2023,reserves_months,7.09632126966092
+Czechia,CZE,2024,reserves_months,6.9620214293683
+Czechia,CZE,2025,reserves_months,7.64375278763755
+"Egypt, Arab Rep.",EGY,2019,current_account,-3.20758543154938
+"Egypt, Arab Rep.",EGY,2020,current_account,-3.70903990583375
+"Egypt, Arab Rep.",EGY,2021,current_account,-4.38240299812001
+"Egypt, Arab Rep.",EGY,2022,current_account,-2.2100904275198
+"Egypt, Arab Rep.",EGY,2023,current_account,-3.17338763053558
+"Egypt, Arab Rep.",EGY,2024,current_account,-5.68596234093524
+"Egypt, Arab Rep.",EGY,2025,current_account,-3.81547628555514
+"Egypt, Arab Rep.",EGY,2019,external_debt_gni,37.3486377137165
+"Egypt, Arab Rep.",EGY,2020,external_debt_gni,35.5843178235706
+"Egypt, Arab Rep.",EGY,2021,external_debt_gni,35.4130599251787
+"Egypt, Arab Rep.",EGY,2022,external_debt_gni,35.3832819125992
+"Egypt, Arab Rep.",EGY,2023,external_debt_gni,44.4212432479616
+"Egypt, Arab Rep.",EGY,2024,external_debt_gni,41.9820138564051
+"Egypt, Arab Rep.",EGY,2019,gdp_growth,5.55209307084222
+"Egypt, Arab Rep.",EGY,2020,gdp_growth,3.55016483883115
+"Egypt, Arab Rep.",EGY,2021,gdp_growth,3.29064601193245
+"Egypt, Arab Rep.",EGY,2022,gdp_growth,6.58784560870467
+"Egypt, Arab Rep.",EGY,2023,gdp_growth,3.76028052279247
+"Egypt, Arab Rep.",EGY,2024,gdp_growth,2.3991692678251
+"Egypt, Arab Rep.",EGY,2025,gdp_growth,4.39201068570188
+"Egypt, Arab Rep.",EGY,2019,inflation,9.15279959324804
+"Egypt, Arab Rep.",EGY,2020,inflation,5.04493288977539
+"Egypt, Arab Rep.",EGY,2021,inflation,5.21404940513043
+"Egypt, Arab Rep.",EGY,2022,inflation,13.8956609775178
+"Egypt, Arab Rep.",EGY,2023,inflation,33.8847763115546
+"Egypt, Arab Rep.",EGY,2024,inflation,28.2705899322083
+"Egypt, Arab Rep.",EGY,2025,inflation,14.0735136645934
+"Egypt, Arab Rep.",EGY,2019,reserves_months,5.83923947440236
+"Egypt, Arab Rep.",EGY,2020,reserves_months,5.56473451430895
+"Egypt, Arab Rep.",EGY,2021,reserves_months,4.38225643427728
+"Egypt, Arab Rep.",EGY,2022,reserves_months,3.32738146369502
+"Egypt, Arab Rep.",EGY,2023,reserves_months,3.87390992001782
+"Egypt, Arab Rep.",EGY,2024,reserves_months,4.53950764706678
+"Egypt, Arab Rep.",EGY,2025,reserves_months,4.35960492991794
+Ghana,GHA,2019,current_account,-2.72699375813964
+Ghana,GHA,2020,current_account,-3.04816313374944
+Ghana,GHA,2021,current_account,-2.8205574143058
+Ghana,GHA,2022,current_account,-2.33126484632356
+Ghana,GHA,2023,current_account,-0.911884130701339
+Ghana,GHA,2024,current_account,1.91923157284388
+Ghana,GHA,2025,current_account,8.22096928515243
+Ghana,GHA,2019,external_debt_gni,49.8694571261813
+Ghana,GHA,2020,external_debt_gni,56.9614944269336
+Ghana,GHA,2021,external_debt_gni,60.4375749224229
+Ghana,GHA,2022,external_debt_gni,60.022746907535
+Ghana,GHA,2023,external_debt_gni,55.2963757239878
+Ghana,GHA,2024,external_debt_gni,46.9171668170777
+Ghana,GHA,2019,gdp_growth,6.5077747939152
+Ghana,GHA,2020,gdp_growth,0.513941670628171
+Ghana,GHA,2021,gdp_growth,5.07646643533542
+Ghana,GHA,2022,gdp_growth,3.80484978178042
+Ghana,GHA,2023,gdp_growth,3.14009100080186
+Ghana,GHA,2024,gdp_growth,5.84746854280382
+Ghana,GHA,2025,gdp_growth,5.95441714756899
+Ghana,GHA,2019,inflation,7.14364003330857
+Ghana,GHA,2020,inflation,9.88728956269944
+Ghana,GHA,2021,inflation,9.9710886750444
+Ghana,GHA,2022,inflation,31.2558951049016
+Ghana,GHA,2023,inflation,38.1069656296501
+Ghana,GHA,2024,inflation,22.8483281157842
+Ghana,GHA,2025,inflation,14.2046755548989
+Ghana,GHA,2019,reserves_months,2.89562482242713
+Ghana,GHA,2020,reserves_months,3.29851075387678
+Ghana,GHA,2021,reserves_months,3.91994487404489
+Ghana,GHA,2022,reserves_months,1.96715452699178
+Ghana,GHA,2023,reserves_months,1.44787783771813
+Ghana,GHA,2024,reserves_months,1.6387674511702
+India,IND,2019,current_account,-1.04961203910072
+India,IND,2020,current_account,1.22362111042791
+India,IND,2021,current_account,-1.05524166809383
+India,IND,2022,current_account,-2.43238270956779
+India,IND,2023,current_account,-0.912777939495827
+India,IND,2024,current_account,-0.851289719084462
+India,IND,2025,current_account,-0.416854153498652
+India,IND,2019,external_debt_gni,19.9766366353145
+India,IND,2020,external_debt_gni,21.4094740100862
+India,IND,2021,external_debt_gni,19.5524130311129
+India,IND,2022,external_debt_gni,18.6518069060743
+India,IND,2023,external_debt_gni,18.0442974446192
+India,IND,2024,external_debt_gni,18.5795533694083
+India,IND,2019,gdp_growth,3.87143694070524
+India,IND,2020,gdp_growth,-5.77772470687303
+India,IND,2021,gdp_growth,9.68959249191741
+India,IND,2022,gdp_growth,7.6093649776932
+India,IND,2023,gdp_growth,7.210224629335
+India,IND,2024,gdp_growth,7.09927893176518
+India,IND,2025,gdp_growth,7.56666179284244
+India,IND,2019,inflation,3.72950573539123
+India,IND,2020,inflation,6.6234367762853
+India,IND,2021,inflation,5.13140747176364
+India,IND,2022,inflation,6.69903414079858
+India,IND,2023,inflation,5.64914318907925
+India,IND,2024,inflation,4.95303550973661
+India,IND,2025,inflation,2.39884954182294
+India,IND,2019,reserves_months,8.27365940048396
+India,IND,2020,reserves_months,12.9323281065786
+India,IND,2021,reserves_months,9.84238574452328
+India,IND,2022,reserves_months,7.00951210544359
+India,IND,2023,reserves_months,7.97237314389747
+India,IND,2024,reserves_months,7.52136088188696
+India,IND,2025,reserves_months,7.8761457217327
+Indonesia,IDN,2019,current_account,-2.7056619813955
+Indonesia,IDN,2020,current_account,-0.418606247736126
+Indonesia,IDN,2021,current_account,0.295885914526078
+Indonesia,IDN,2022,current_account,1.00182875104005
+Indonesia,IDN,2023,current_account,-0.148899596516736
+Indonesia,IDN,2024,current_account,-0.614730078804115
+Indonesia,IDN,2025,current_account,-0.105263812011573
+Indonesia,IDN,2019,external_debt_gni,37.0829978168899
+Indonesia,IDN,2020,external_debt_gni,40.4899520829926
+Indonesia,IDN,2021,external_debt_gni,36.1990816015577
+Indonesia,IDN,2022,external_debt_gni,30.8527352858338
+Indonesia,IDN,2023,external_debt_gni,29.935375315129
+Indonesia,IDN,2024,external_debt_gni,30.9729980083421
+Indonesia,IDN,2019,gdp_growth,5.01928768046282
+Indonesia,IDN,2020,gdp_growth,-2.06551182934165
+Indonesia,IDN,2021,gdp_growth,3.70288562827751
+Indonesia,IDN,2022,gdp_growth,5.30719722664799
+Indonesia,IDN,2023,gdp_growth,5.04883117855516
+Indonesia,IDN,2024,gdp_growth,5.03257477088519
+Indonesia,IDN,2025,gdp_growth,5.10808904438025
+Indonesia,IDN,2019,inflation,3.03058460941661
+Indonesia,IDN,2020,inflation,1.91983527270793
+Indonesia,IDN,2021,inflation,1.56007882983334
+Indonesia,IDN,2022,inflation,4.20946463714784
+Indonesia,IDN,2023,inflation,3.66938654859761
+Indonesia,IDN,2024,inflation,2.18151273615189
+Indonesia,IDN,2025,inflation,1.9133344329508
+Indonesia,IDN,2019,reserves_months,6.31777434419502
+Indonesia,IDN,2020,reserves_months,8.40697484639797
+Indonesia,IDN,2021,reserves_months,6.78517585393017
+Indonesia,IDN,2022,reserves_months,5.21322077470096
+Indonesia,IDN,2023,reserves_months,5.72806559441344
+Indonesia,IDN,2024,reserves_months,5.72012468838059
+Indonesia,IDN,2025,reserves_months,5.51085431823322
+Iraq,IRQ,2019,current_account,6.74664580876131
+Iraq,IRQ,2020,current_account,-3.48598226553262
+Iraq,IRQ,2021,current_account,11.7148037882244
+Iraq,IRQ,2022,current_account,20.1861883343541
+Iraq,IRQ,2023,current_account,10.5528397110428
+Iraq,IRQ,2024,current_account,2.99186896502489
+Iraq,IRQ,2019,external_debt_gni,11.8236722126954
+Iraq,IRQ,2020,external_debt_gni,14.7009987283311
+Iraq,IRQ,2021,external_debt_gni,12.2142568885482
+Iraq,IRQ,2022,external_debt_gni,7.93319206853994
+Iraq,IRQ,2023,external_debt_gni,7.52940734720434
+Iraq,IRQ,2024,external_debt_gni,6.22639916968424
+Iraq,IRQ,2019,gdp_growth,5.5137905789381
+Iraq,IRQ,2020,gdp_growth,-12.0367930960454
+Iraq,IRQ,2021,gdp_growth,1.5021807095434
+Iraq,IRQ,2022,gdp_growth,7.95904804990212
+Iraq,IRQ,2023,gdp_growth,0.517705525140073
+Iraq,IRQ,2024,gdp_growth,-1.54525198319173
+Iraq,IRQ,2025,gdp_growth,-2.15574219066178
+Iraq,IRQ,2019,inflation,-0.198965380023882
+Iraq,IRQ,2020,inflation,0.574162679425856
+Iraq,IRQ,2021,inflation,6.04186489058043
+Iraq,IRQ,2022,inflation,4.9947659638103
+Iraq,IRQ,2023,inflation,4.35835351089595
+Iraq,IRQ,2024,inflation,2.6116961151764
+Iraq,IRQ,2025,inflation,0.303454715219382
+Iraq,IRQ,2019,reserves_months,10.8595841433164
+Iraq,IRQ,2020,reserves_months,11.3492885016081
+Iraq,IRQ,2021,reserves_months,14.4684288131166
+Iraq,IRQ,2022,reserves_months,16.265596420488
+Iraq,IRQ,2023,reserves_months,15.8737025963
+Iraq,IRQ,2024,reserves_months,11.2072163127604
+Jordan,JOR,2019,current_account,-1.58889950651918
+Jordan,JOR,2020,current_account,-5.22619044169868
+Jordan,JOR,2021,current_account,-7.33213017137509
+Jordan,JOR,2022,current_account,-7.39189539188183
+Jordan,JOR,2023,current_account,-3.25589967062863
+Jordan,JOR,2024,current_account,-5.33366328480029
+Jordan,JOR,2019,external_debt_gni,75.2477556467505
+Jordan,JOR,2020,external_debt_gni,87.2903094132487
+Jordan,JOR,2021,external_debt_gni,90.649566277089
+Jordan,JOR,2022,external_debt_gni,85.3105835968273
+Jordan,JOR,2023,external_debt_gni,87.8712529400758
+Jordan,JOR,2024,external_debt_gni,90.1349716229773
+Jordan,JOR,2019,gdp_growth,1.85633006592765
+Jordan,JOR,2020,gdp_growth,-1.15257534158022
+Jordan,JOR,2021,gdp_growth,3.75201276755828
+Jordan,JOR,2022,gdp_growth,2.7468615450031
+Jordan,JOR,2023,gdp_growth,3.12900102017251
+Jordan,JOR,2024,gdp_growth,2.55605891810194
+Jordan,JOR,2025,gdp_growth,2.82660839845745
+Jordan,JOR,2019,inflation,0.761514047265601
+Jordan,JOR,2020,inflation,0.333294350628378
+Jordan,JOR,2021,inflation,1.34609377243118
+Jordan,JOR,2022,inflation,4.22915568897117
+Jordan,JOR,2023,inflation,2.08486986327134
+Jordan,JOR,2024,inflation,1.55659611283953
+Jordan,JOR,2025,inflation,1.76646490894206
+Jordan,JOR,2019,reserves_months,7.95678043914995
+Jordan,JOR,2020,reserves_months,10.4582795455972
+Jordan,JOR,2021,reserves_months,9.41805813288369
+Jordan,JOR,2022,reserves_months,6.91105668859684
+Jordan,JOR,2023,reserves_months,7.30720985185322
+Jordan,JOR,2024,reserves_months,7.79308209953668
+Kazakhstan,KAZ,2019,current_account,-3.8684220835049
+Kazakhstan,KAZ,2020,current_account,-6.46182057750936
+Kazakhstan,KAZ,2021,current_account,-1.35935671668035
+Kazakhstan,KAZ,2022,current_account,2.85432700775768
+Kazakhstan,KAZ,2023,current_account,-3.16389675969422
+Kazakhstan,KAZ,2024,current_account,-2.32054721716038
+Kazakhstan,KAZ,2025,current_account,-4.06579066364776
+Kazakhstan,KAZ,2019,external_debt_gni,107.373342903391
+Kazakhstan,KAZ,2020,external_debt_gni,110.819683629583
+Kazakhstan,KAZ,2021,external_debt_gni,100.270147736422
+Kazakhstan,KAZ,2022,external_debt_gni,84.7932235856559
+Kazakhstan,KAZ,2023,external_debt_gni,72.9017800635209
+Kazakhstan,KAZ,2024,external_debt_gni,62.6029318152699
+Kazakhstan,KAZ,2019,gdp_growth,4.50000000091883
+Kazakhstan,KAZ,2020,gdp_growth,-2.49999999628
+Kazakhstan,KAZ,2021,gdp_growth,4.29999999729456
+Kazakhstan,KAZ,2022,gdp_growth,3.19999999970734
+Kazakhstan,KAZ,2023,gdp_growth,5.09999999973641
+Kazakhstan,KAZ,2024,gdp_growth,4.99999999996936
+Kazakhstan,KAZ,2025,gdp_growth,6.5
+Kazakhstan,KAZ,2019,inflation,5.33356098916669
+Kazakhstan,KAZ,2020,inflation,6.71815454861458
+Kazakhstan,KAZ,2021,inflation,8.04147134028401
+Kazakhstan,KAZ,2022,inflation,15.0278644440851
+Kazakhstan,KAZ,2023,inflation,14.5275597825952
+Kazakhstan,KAZ,2024,inflation,8.69082156104494
+Kazakhstan,KAZ,2025,inflation,11.3879454675914
+Kazakhstan,KAZ,2019,reserves_months,4.46057061758816
+Kazakhstan,KAZ,2020,reserves_months,6.70962132483119
+Kazakhstan,KAZ,2021,reserves_months,5.42839331910088
+Kazakhstan,KAZ,2022,reserves_months,4.68627763510631
+Kazakhstan,KAZ,2023,reserves_months,4.20119988344391
+Kazakhstan,KAZ,2024,reserves_months,5.37012273083905
+Kazakhstan,KAZ,2025,reserves_months,7.38619113398577
+Kenya,KEN,2019,current_account,-5.23852935907811
+Kenya,KEN,2020,current_account,-3.2691100706529
+Kenya,KEN,2021,current_account,-4.59900811539261
+Kenya,KEN,2022,current_account,-4.19995258299621
+Kenya,KEN,2023,current_account,-2.54552534327702
+Kenya,KEN,2024,current_account,-1.28724447407872
+Kenya,KEN,2019,external_debt_gni,35.4042862038635
+Kenya,KEN,2020,external_debt_gni,38.0454096339675
+Kenya,KEN,2021,external_debt_gni,38.1042168095825
+Kenya,KEN,2022,external_debt_gni,36.8769031537885
+Kenya,KEN,2023,external_debt_gni,40.4232521954815
+Kenya,KEN,2024,external_debt_gni,34.992669732423
+Kenya,KEN,2019,gdp_growth,5.11415885767801
+Kenya,KEN,2020,gdp_growth,-0.272766327438816
+Kenya,KEN,2021,gdp_growth,7.59048947333467
+Kenya,KEN,2022,gdp_growth,4.85998104287999
+Kenya,KEN,2023,gdp_growth,5.71999241214208
+Kenya,KEN,2024,gdp_growth,4.66019594571891
+Kenya,KEN,2025,gdp_growth,4.63261093844984
+Kenya,KEN,2019,inflation,5.23963795764792
+Kenya,KEN,2020,inflation,5.40516207933392
+Kenya,KEN,2021,inflation,6.10793603659176
+Kenya,KEN,2022,inflation,7.65986268272224
+Kenya,KEN,2023,inflation,7.67139634029402
+Kenya,KEN,2024,inflation,4.48978854243448
+Kenya,KEN,2025,inflation,4.06912878540729
+Kenya,KEN,2019,reserves_months,4.9206748709835
+Kenya,KEN,2020,reserves_months,5.00168160921731
+Kenya,KEN,2021,reserves_months,4.42483155112942
+Kenya,KEN,2022,reserves_months,3.2163509377815
+Kenya,KEN,2023,reserves_months,3.13876976697341
+Kenya,KEN,2024,reserves_months,4.02886150176484
+Malaysia,MYS,2019,current_account,3.50388669683419
+Malaysia,MYS,2020,current_account,4.18956779359845
+Malaysia,MYS,2021,current_account,3.87747951420626
+Malaysia,MYS,2022,current_account,3.1234711057235
+Malaysia,MYS,2023,current_account,1.56447203150546
+Malaysia,MYS,2024,current_account,1.69342393177115
+Malaysia,MYS,2019,gdp_growth,4.41318742129586
+Malaysia,MYS,2020,gdp_growth,-5.45684658426701
+Malaysia,MYS,2021,gdp_growth,3.31534954399166
+Malaysia,MYS,2022,gdp_growth,9.03173723044451
+Malaysia,MYS,2023,gdp_growth,3.5370638041057
+Malaysia,MYS,2024,gdp_growth,5.10545921024041
+Malaysia,MYS,2025,gdp_growth,5.17127082911057
+Malaysia,MYS,2019,inflation,0.662891865764326
+Malaysia,MYS,2020,inflation,-1.1387021539305
+Malaysia,MYS,2021,inflation,2.47710241465447
+Malaysia,MYS,2022,inflation,3.37869862549928
+Malaysia,MYS,2023,inflation,2.48886560125754
+Malaysia,MYS,2024,inflation,1.834100204499
+Malaysia,MYS,2025,inflation,1.38060872293692
+Malaysia,MYS,2019,reserves_months,5.26575125943776
+Malaysia,MYS,2020,reserves_months,6.26880997379088
+Malaysia,MYS,2021,reserves_months,5.18620609619313
+Malaysia,MYS,2022,reserves_months,4.32861908087948
+Malaysia,MYS,2023,reserves_months,4.77774044018093
+Malaysia,MYS,2024,reserves_months,4.45057833503037
+Mexico,MEX,2019,current_account,-0.296844402020911
+Mexico,MEX,2020,current_account,2.39710320563074
+Mexico,MEX,2021,current_account,-0.340708629738092
+Mexico,MEX,2022,current_account,-1.27426718190487
+Mexico,MEX,2023,current_account,-0.699077082003633
+Mexico,MEX,2024,current_account,-0.912091864173097
+Mexico,MEX,2025,current_account,-0.447421048798837
+Mexico,MEX,2019,external_debt_gni,48.7169187460769
+Mexico,MEX,2020,external_debt_gni,56.8349663684666
+Mexico,MEX,2021,external_debt_gni,46.8965782589805
+Mexico,MEX,2022,external_debt_gni,40.8971913213688
+Mexico,MEX,2023,external_debt_gni,34.0722892134803
+Mexico,MEX,2024,external_debt_gni,32.8920519832698
+Mexico,MEX,2019,gdp_growth,-0.392690513290532
+Mexico,MEX,2020,gdp_growth,-8.35403459379062
+Mexico,MEX,2021,gdp_growth,6.04848347173572
+Mexico,MEX,2022,gdp_growth,3.70975708309098
+Mexico,MEX,2023,gdp_growth,3.1067964131456
+Mexico,MEX,2024,gdp_growth,1.35057631384696
+Mexico,MEX,2025,gdp_growth,0.561683456144578
+Mexico,MEX,2019,inflation,3.63596142127046
+Mexico,MEX,2020,inflation,3.39683415570006
+Mexico,MEX,2021,inflation,5.68920847683753
+Mexico,MEX,2022,inflation,7.8962761916855
+Mexico,MEX,2023,inflation,5.52796087314389
+Mexico,MEX,2024,inflation,4.72225588452932
+Mexico,MEX,2025,inflation,3.80668650726485
+Mexico,MEX,2019,reserves_months,3.91541539352767
+Mexico,MEX,2020,reserves_months,5.07902828726659
+Mexico,MEX,2021,reserves_months,4.12398114778684
+Mexico,MEX,2022,reserves_months,3.32190681281323
+Mexico,MEX,2023,reserves_months,3.44254741981939
+Mexico,MEX,2024,reserves_months,3.54735732153754
+Mexico,MEX,2025,reserves_months,3.74625370139359
+Morocco,MAR,2019,current_account,-3.4182057355437
+Morocco,MAR,2020,current_account,-1.1275993199651
+Morocco,MAR,2021,current_account,-2.35786783699057
+Morocco,MAR,2022,current_account,-3.6574911910038
+Morocco,MAR,2023,current_account,-1.04767760599469
+Morocco,MAR,2024,current_account,-1.23072108998601
+Morocco,MAR,2025,current_account,-2.49808221535456
+Morocco,MAR,2019,external_debt_gni,43.5343377341004
+Morocco,MAR,2020,external_debt_gni,54.9196081945346
+Morocco,MAR,2021,external_debt_gni,46.8983264543197
+Morocco,MAR,2022,external_debt_gni,50.35106931617
+Morocco,MAR,2023,external_debt_gni,48.9147951964991
+Morocco,MAR,2024,external_debt_gni,44.7188367863758
+Morocco,MAR,2019,gdp_growth,2.89097476137077
+Morocco,MAR,2020,gdp_growth,-7.17820744246774
+Morocco,MAR,2021,gdp_growth,8.15473889823681
+Morocco,MAR,2022,gdp_growth,1.81269242194809
+Morocco,MAR,2023,gdp_growth,3.65564411017931
+Morocco,MAR,2024,gdp_growth,3.79336515978963
+Morocco,MAR,2025,gdp_growth,4.59524349182247
+Morocco,MAR,2019,inflation,0.303386036590383
+Morocco,MAR,2020,inflation,0.705968661338261
+Morocco,MAR,2021,inflation,1.40195883962006
+Morocco,MAR,2022,inflation,6.65704202759067
+Morocco,MAR,2023,inflation,6.09114152504141
+Morocco,MAR,2024,inflation,0.985256592004507
+Morocco,MAR,2025,inflation,0.701902154839545
+Morocco,MAR,2019,reserves_months,5.58422656502833
+Morocco,MAR,2020,reserves_months,8.9354144570375
+Morocco,MAR,2021,reserves_months,6.7712924140998
+Morocco,MAR,2022,reserves_months,5.06212133329447
+Morocco,MAR,2023,reserves_months,5.63476498950226
+Morocco,MAR,2024,reserves_months,5.26170979299897
+Morocco,MAR,2025,reserves_months,5.92686959641173
+Philippines,PHL,2019,current_account,-0.808557862529767
+Philippines,PHL,2020,current_account,3.20065009232565
+Philippines,PHL,2021,current_account,-1.50797765976295
+Philippines,PHL,2022,current_account,-4.51605763317134
+Philippines,PHL,2023,current_account,-2.834121138482
+Philippines,PHL,2024,current_account,-4.0212789718349
+Philippines,PHL,2025,current_account,-3.34449841700068
+Philippines,PHL,2019,external_debt_gni,20.3516842117646
+Philippines,PHL,2020,external_debt_gni,25.3116389229833
+Philippines,PHL,2021,external_debt_gni,26.1303951987477
+Philippines,PHL,2022,external_debt_gni,25.875290276635
+Philippines,PHL,2023,external_debt_gni,25.6668725797068
+Philippines,PHL,2024,external_debt_gni,26.2604550502335
+Philippines,PHL,2019,gdp_growth,6.11852566221303
+Philippines,PHL,2020,gdp_growth,-9.51829474045297
+Philippines,PHL,2021,gdp_growth,5.71473313185116
+Philippines,PHL,2022,gdp_growth,7.58098212785563
+Philippines,PHL,2023,gdp_growth,5.51894967856043
+Philippines,PHL,2024,gdp_growth,5.71474526128652
+Philippines,PHL,2025,gdp_growth,4.40240158710621
+Philippines,PHL,2019,inflation,2.39206534422404
+Philippines,PHL,2020,inflation,2.3931623931624
+Philippines,PHL,2021,inflation,3.92718022100332
+Philippines,PHL,2022,inflation,5.82115811213955
+Philippines,PHL,2023,inflation,5.97802515541409
+Philippines,PHL,2024,inflation,3.21260487006347
+Philippines,PHL,2025,inflation,1.6587364525509
+Philippines,PHL,2019,reserves_months,7.72024557926384
+Philippines,PHL,2020,reserves_months,12.2854455443743
+Philippines,PHL,2021,reserves_months,9.66180966264431
+Philippines,PHL,2022,reserves_months,7.17102711134574
+Philippines,PHL,2023,reserves_months,7.61565817073656
+Philippines,PHL,2024,reserves_months,7.34350984657376
+Philippines,PHL,2025,reserves_months,7.33206019042327
+Poland,POL,2019,current_account,-0.272945793712772
+Poland,POL,2020,current_account,2.39835922164097
+Poland,POL,2021,current_account,-1.30156521580162
+Poland,POL,2022,current_account,-2.27455866454271
+Poland,POL,2023,current_account,1.53683077845046
+Poland,POL,2024,current_account,0.30454349270969
+Poland,POL,2025,current_account,-0.874270577338915
+Poland,POL,2019,gdp_growth,4.58045817256199
+Poland,POL,2020,gdp_growth,-2.03556882399977
+Poland,POL,2021,gdp_growth,6.92718266052501
+Poland,POL,2022,gdp_growth,5.25545697386036
+Poland,POL,2023,gdp_growth,0.249610834017872
+Poland,POL,2024,gdp_growth,3.02841630700273
+Poland,POL,2025,gdp_growth,3.5727250346774
+Poland,POL,2019,inflation,2.22747880938291
+Poland,POL,2020,inflation,3.37446972618589
+Poland,POL,2021,inflation,5.05502704719272
+Poland,POL,2022,inflation,14.4294507575758
+Poland,POL,2023,inflation,11.5289127961105
+Poland,POL,2024,inflation,3.79060897630197
+Poland,POL,2025,inflation,3.81419531520146
+Poland,POL,2019,reserves_months,4.60331314972597
+Poland,POL,2020,reserves_months,5.76793469149636
+Poland,POL,2021,reserves_months,4.78077058564326
+Poland,POL,2022,reserves_months,4.25614570821665
+Poland,POL,2023,reserves_months,4.85461481369942
+Poland,POL,2024,reserves_months,5.36718824327154
+Poland,POL,2025,reserves_months,5.86929668938286
+Rwanda,RWA,2019,current_account,-11.7010514056445
+Rwanda,RWA,2020,current_account,-11.7050024980473
+Rwanda,RWA,2021,current_account,-10.7463785818259
+Rwanda,RWA,2022,current_account,-9.07221418802756
+Rwanda,RWA,2023,current_account,-11.1249965993558
+Rwanda,RWA,2024,current_account,-11.9618864449723
+Rwanda,RWA,2019,external_debt_gni,65.1410718001911
+Rwanda,RWA,2020,external_debt_gni,82.4503892484163
+Rwanda,RWA,2021,external_debt_gni,85.8558898695688
+Rwanda,RWA,2022,external_debt_gni,74.3314388443279
+Rwanda,RWA,2023,external_debt_gni,81.0157835253365
+Rwanda,RWA,2024,external_debt_gni,93.8824280218587
+Rwanda,RWA,2019,gdp_growth,9.28613387454543
+Rwanda,RWA,2020,gdp_growth,-2.77710485515125
+Rwanda,RWA,2021,gdp_growth,8.41140448646523
+Rwanda,RWA,2022,gdp_growth,9.82497394651698
+Rwanda,RWA,2023,gdp_growth,8.55964292914153
+Rwanda,RWA,2024,gdp_growth,7.22717103344534
+Rwanda,RWA,2025,gdp_growth,9.37579834182446
+Rwanda,RWA,2019,inflation,3.34787655037648
+Rwanda,RWA,2020,inflation,9.85039902274207
+Rwanda,RWA,2021,inflation,-0.391346748300791
+Rwanda,RWA,2022,inflation,17.6892095588153
+Rwanda,RWA,2023,inflation,19.789546746467
+Rwanda,RWA,2024,inflation,1.77029240198635
+Rwanda,RWA,2025,inflation,5.913000168826
+Rwanda,RWA,2019,reserves_months,4.30465520036574
+Rwanda,RWA,2020,reserves_months,5.44665496518955
+Rwanda,RWA,2021,reserves_months,5.47318132745182
+Rwanda,RWA,2022,reserves_months,3.93246331445544
+Rwanda,RWA,2023,reserves_months,3.60403578270489
+Rwanda,RWA,2024,reserves_months,4.18468259139653
+Saudi Arabia,SAU,2019,current_account,3.64484004485364
+Saudi Arabia,SAU,2020,current_account,-4.51692116727614
+Saudi Arabia,SAU,2021,current_account,4.5697627196532
+Saudi Arabia,SAU,2022,current_account,11.7294510759777
+Saudi Arabia,SAU,2023,current_account,2.12936729495784
+Saudi Arabia,SAU,2024,current_account,-1.29603148573183
+Saudi Arabia,SAU,2025,current_account,-2.56365940191401
+Saudi Arabia,SAU,2019,gdp_growth,1.65158925617395
+Saudi Arabia,SAU,2020,gdp_growth,-3.80478901996312
+Saudi Arabia,SAU,2021,gdp_growth,6.51959698325419
+Saudi Arabia,SAU,2022,gdp_growth,12.0005874752929
+Saudi Arabia,SAU,2023,gdp_growth,0.542592439393161
+Saudi Arabia,SAU,2024,gdp_growth,2.64893068308965
+Saudi Arabia,SAU,2025,gdp_growth,4.50246560191663
+Saudi Arabia,SAU,2019,inflation,-1.19298644533328
+Saudi Arabia,SAU,2020,inflation,3.37234961012303
+Saudi Arabia,SAU,2021,inflation,3.06328988941548
+Saudi Arabia,SAU,2022,inflation,2.47407371925372
+Saudi Arabia,SAU,2023,inflation,2.32708518362706
+Saudi Arabia,SAU,2024,inflation,1.68792112375809
+Saudi Arabia,SAU,2025,inflation,2.08420853585036
+Saudi Arabia,SAU,2019,reserves_months,25.5992015113689
+Saudi Arabia,SAU,2020,reserves_months,27.83499765841
+Saudi Arabia,SAU,2021,reserves_months,25.1183969265183
+Saudi Arabia,SAU,2022,reserves_months,20.0230345579448
+Saudi Arabia,SAU,2023,reserves_months,16.5690894253073
+Saudi Arabia,SAU,2024,reserves_months,15.0571337423468
+Saudi Arabia,SAU,2025,reserves_months,15.5945460088131
+South Africa,ZAF,2019,current_account,-2.6199906748304
+South Africa,ZAF,2020,current_account,2.00352275153333
+South Africa,ZAF,2021,current_account,3.7724136934501
+South Africa,ZAF,2022,current_account,-0.296182598127432
+South Africa,ZAF,2023,current_account,-1.10356312207881
+South Africa,ZAF,2024,current_account,-0.64279979707505
+South Africa,ZAF,2025,current_account,-0.422766754018983
+South Africa,ZAF,2019,external_debt_gni,50.2481328155576
+South Africa,ZAF,2020,external_debt_gni,52.7841323729174
+South Africa,ZAF,2021,external_debt_gni,41.0418957615734
+South Africa,ZAF,2022,external_debt_gni,43.0995184381018
+South Africa,ZAF,2023,external_debt_gni,44.1610440626778
+South Africa,ZAF,2024,external_debt_gni,44.8309798829996
+South Africa,ZAF,2019,gdp_growth,0.25993557687633
+South Africa,ZAF,2020,gdp_growth,-6.1689177146757
+South Africa,ZAF,2021,gdp_growth,4.85864865060148
+South Africa,ZAF,2022,gdp_growth,2.05813661692193
+South Africa,ZAF,2023,gdp_growth,0.80610455095804
+South Africa,ZAF,2024,gdp_growth,0.534843531905139
+South Africa,ZAF,2025,gdp_growth,1.11462608103956
+South Africa,ZAF,2019,inflation,4.10285075461156
+South Africa,ZAF,2020,inflation,3.23238831615113
+South Africa,ZAF,2021,inflation,4.61874544887136
+South Africa,ZAF,2022,inflation,7.03987272546482
+South Africa,ZAF,2023,inflation,6.0752438457966
+South Africa,ZAF,2024,inflation,4.36115246518962
+South Africa,ZAF,2025,inflation,3.20550474112603
+South Africa,ZAF,2019,reserves_months,5.40690081512174
+South Africa,ZAF,2020,reserves_months,7.12354295570034
+South Africa,ZAF,2021,reserves_months,5.56291275582496
+South Africa,ZAF,2022,reserves_months,4.91388463271698
+South Africa,ZAF,2023,reserves_months,5.33074985880917
+South Africa,ZAF,2024,reserves_months,5.67102712164407
+South Africa,ZAF,2025,reserves_months,6.22465629934582
+Turkiye,TUR,2019,current_account,1.9351600379275
+Turkiye,TUR,2020,current_account,-4.22284721473811
+Turkiye,TUR,2021,current_account,-0.74064931592423
+Turkiye,TUR,2022,current_account,-4.99763806227356
+Turkiye,TUR,2023,current_account,-3.63367003503212
+Turkiye,TUR,2024,current_account,-0.766008235540632
+Turkiye,TUR,2019,external_debt_gni,55.3071524639806
+Turkiye,TUR,2020,external_debt_gni,60.3150906136416
+Turkiye,TUR,2021,external_debt_gni,53.7425891882514
+Turkiye,TUR,2022,external_debt_gni,50.758322367613
+Turkiye,TUR,2023,external_debt_gni,45.157151097837
+Turkiye,TUR,2024,external_debt_gni,39.3880494718611
+Turkiye,TUR,2019,gdp_growth,1.30162365464503
+Turkiye,TUR,2020,gdp_growth,1.80306247087255
+Turkiye,TUR,2021,gdp_growth,11.811094450607
+Turkiye,TUR,2022,gdp_growth,5.44122511322401
+Turkiye,TUR,2023,gdp_growth,5.04512369812289
+Turkiye,TUR,2024,gdp_growth,3.3276230893799
+Turkiye,TUR,2025,gdp_growth,3.60462514082589
+Turkiye,TUR,2019,inflation,15.1768215720022
+Turkiye,TUR,2020,inflation,12.2789574462574
+Turkiye,TUR,2021,inflation,19.5964926913324
+Turkiye,TUR,2022,inflation,72.3088359891207
+Turkiye,TUR,2023,inflation,53.8594087593315
+Turkiye,TUR,2024,inflation,58.5064507300342
+Turkiye,TUR,2025,inflation,34.8811629820306
+Turkiye,TUR,2019,reserves_months,5.18429649280588
+Turkiye,TUR,2020,reserves_months,4.62292551551256
+Turkiye,TUR,2021,reserves_months,4.45898866581647
+Turkiye,TUR,2022,reserves_months,3.88032643940638
+Turkiye,TUR,2023,reserves_months,4.15773246137926
+Turkiye,TUR,2024,reserves_months,4.72961263910876
+Viet Nam,VNM,2019,current_account,3.91824395534243
+Viet Nam,VNM,2020,current_account,4.34486906553373
+Viet Nam,VNM,2021,current_account,-1.26284279203588
+Viet Nam,VNM,2022,current_account,0.339101746979362
+Viet Nam,VNM,2023,current_account,5.94575853346696
+Viet Nam,VNM,2024,current_account,6.33496605552948
+Viet Nam,VNM,2019,external_debt_gni,38.5732191379908
+Viet Nam,VNM,2020,external_debt_gni,39.0234679461042
+Viet Nam,VNM,2021,external_debt_gni,40.2192163533687
+Viet Nam,VNM,2022,external_debt_gni,37.2580281492659
+Viet Nam,VNM,2023,external_debt_gni,34.4790753177648
+Viet Nam,VNM,2024,external_debt_gni,28.849298110528
+Viet Nam,VNM,2019,gdp_growth,7.35926270105006
+Viet Nam,VNM,2020,gdp_growth,2.86541320912272
+Viet Nam,VNM,2021,gdp_growth,2.55372852648131
+Viet Nam,VNM,2022,gdp_growth,8.53750041218142
+Viet Nam,VNM,2023,gdp_growth,4.97865959483225
+Viet Nam,VNM,2024,gdp_growth,7.03955197123018
+Viet Nam,VNM,2025,gdp_growth,8.01882998978245
+Viet Nam,VNM,2019,inflation,2.79582367452244
+Viet Nam,VNM,2020,inflation,3.22093436652515
+Viet Nam,VNM,2021,inflation,1.83471554810462
+Viet Nam,VNM,2022,inflation,3.15650749963112
+Viet Nam,VNM,2023,inflation,3.25289282667662
+Viet Nam,VNM,2024,inflation,3.62109273885844
+Viet Nam,VNM,2025,inflation,3.3099931421974
+Viet Nam,VNM,2019,reserves_months,3.36679352940087
+Viet Nam,VNM,2020,reserves_months,3.9782956088746
+Viet Nam,VNM,2021,reserves_months,3.68607429495755
+Viet Nam,VNM,2022,reserves_months,2.65055544761863
+Viet Nam,VNM,2023,reserves_months,3.01759407672039
+Viet Nam,VNM,2024,reserves_months,2.37407817485002

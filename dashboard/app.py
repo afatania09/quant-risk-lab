@@ -8,6 +8,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
 
+from quant_risk.country_risk import assess_country, country_briefing, latest_country_values
 from quant_risk.export_credit import (
     concentration_report,
     country_limit_report,
@@ -26,6 +27,8 @@ from quant_risk.reporting import executive_risk_report
 ROOT = Path(__file__).resolve().parents[1]
 PORTFOLIO_PATH = ROOT / "data" / "synthetic_export_credit_portfolio.csv"
 SCENARIO_PATH = ROOT / "data" / "ifrs9_scenarios.csv"
+COUNTRY_RISK_PATH = ROOT / "data" / "country_risk_world_bank.csv"
+COVER_POLICY_PATH = ROOT / "data" / "ukef_cover_policy_snapshot.csv"
 
 st.set_page_config(
     page_title="Export Credit Risk Lab",
@@ -63,11 +66,16 @@ st.markdown(
 
 
 @st.cache_data
-def load_default_data() -> tuple[pd.DataFrame, pd.DataFrame]:
-    return pd.read_csv(PORTFOLIO_PATH), pd.read_csv(SCENARIO_PATH)
+def load_default_data() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+    return (
+        pd.read_csv(PORTFOLIO_PATH),
+        pd.read_csv(SCENARIO_PATH),
+        pd.read_csv(COUNTRY_RISK_PATH),
+        pd.read_csv(COVER_POLICY_PATH),
+    )
 
 
-default_portfolio, scenarios = load_default_data()
+default_portfolio, scenarios, country_panel, cover_policy = load_default_data()
 
 st.sidebar.markdown("## Portfolio controls")
 uploaded = st.sidebar.file_uploader("Upload a compatible portfolio CSV", type="csv")
@@ -126,9 +134,10 @@ metric_columns[4].metric(
     "Limit watch list", f"{(limits['status'] != 'Green').sum()} countries"
 )
 
-overview, limits_tab, ifrs_tab, pricing_tab, stress_tab, report_tab = st.tabs(
+overview, country_tab, limits_tab, ifrs_tab, pricing_tab, stress_tab, report_tab = st.tabs(
     [
         "Portfolio overview",
+        "Country risk monitor",
         "Country limits",
         "IFRS 9 ECL",
         "Pricing & reinsurance",
@@ -195,6 +204,133 @@ with overview:
         margin={"l": 10, "r": 10, "t": 10, "b": 10},
     )
     st.plotly_chart(contribution_fig, width="stretch")
+
+with country_tab:
+    st.subheader("Country risk and exposure monitor")
+    st.caption(
+        "Independent screening score using public World Bank macroeconomic and governance "
+        "indicators, combined with fictional portfolio exposure and a dated snapshot of "
+        "public UKEF cover indications. This is not an official UKEF or OECD risk score."
+    )
+    available_countries = sorted(set(clean["country"]) & set(country_panel["country"]))
+    portfolio_screen = []
+    for country in available_countries:
+        country_values, _ = latest_country_values(country_panel, country)
+        country_assessment = assess_country(country_values)
+        country_limit = limits.loc[limits["country"] == country].iloc[0]
+        portfolio_screen.append(
+            {
+                "country": country,
+                "risk_score": country_assessment.score,
+                "grade": country_assessment.grade,
+                "exposure_gbp_m": country_limit["exposure_gbp_m"],
+                "utilisation": country_limit["utilisation"],
+                "warnings": len(country_assessment.warnings),
+                "data_coverage": country_assessment.coverage,
+            }
+        )
+    screen = pd.DataFrame(portfolio_screen)
+    screen_fig = px.scatter(
+        screen,
+        x="risk_score",
+        y="utilisation",
+        size="exposure_gbp_m",
+        color="warnings",
+        hover_name="country",
+        hover_data={"grade": True, "data_coverage": ":.0%", "exposure_gbp_m": ":.1f"},
+        color_continuous_scale=teal_scale,
+        labels={
+            "risk_score": "Independent country-risk score",
+            "utilisation": "Illustrative country-limit utilisation",
+            "warnings": "Warnings",
+        },
+    )
+    screen_fig.add_vline(x=60, line_dash="dash", line_color="#ff788c")
+    screen_fig.add_hline(y=0.8, line_dash="dash", line_color="#d8aa45")
+    screen_fig.update_yaxes(tickformat=".0%")
+    screen_fig.update_layout(template=plot_template, height=430, margin={"t": 25})
+    st.plotly_chart(screen_fig, width="stretch")
+
+    selected_country = st.selectbox("Country profile", available_countries)
+    values, vintage = latest_country_values(country_panel, selected_country)
+    assessment = assess_country(values)
+    selected_limit = limits.loc[limits["country"] == selected_country].iloc[0]
+    policy = cover_policy.loc[cover_policy["country"] == selected_country].iloc[0]
+
+    c1, c2, c3, c4, c5 = st.columns(5)
+    c1.metric("Independent risk score", f"{assessment.score:.1f} / 100")
+    c2.metric("Screening grade", assessment.grade)
+    c3.metric("Covered exposure", f"£{selected_limit['exposure_gbp_m']:,.0f}m")
+    c4.metric("Limit utilisation", f"{selected_limit['utilisation']:.1%}")
+    c5.metric("UKEF appetite snapshot", policy["market_risk_appetite"])
+
+    left, right = st.columns([1.1, 1])
+    with left:
+        display_components = assessment.components.assign(
+            indicator=lambda frame: frame["indicator"].str.replace("_", " ").str.title()
+        ).sort_values("risk_score")
+        component_fig = px.bar(
+            display_components,
+            x="risk_score",
+            y="indicator",
+            orientation="h",
+            color="risk_score",
+            color_continuous_scale=["#70e1c1", "#d8aa45", "#ff788c"],
+            range_color=[0, 100],
+            hover_data={"value": ":.2f", "effective_weight": ":.1%"},
+            labels={"risk_score": "Component risk (0–100)", "indicator": ""},
+        )
+        component_fig.update_layout(template=plot_template, height=430, margin={"t": 20})
+        st.plotly_chart(component_fig, width="stretch")
+    with right:
+        st.markdown("#### Public cover-policy context")
+        st.markdown(
+            f'<div class="decision-card"><b>Cash / short term:</b> '
+            f'{policy["short_term_cover"]}<br><b>Medium / long term:</b> '
+            f'{policy["medium_long_term_cover"]}<br><b>Care on location:</b> '
+            f'{"Yes" if policy["care_on_location"] else "No"}<br>'
+            f'<b>Sustainable lending criteria:</b> '
+            f'{"Yes" if policy["sustainable_lending"] else "No"}</div>',
+            unsafe_allow_html=True,
+        )
+        st.caption(f"Snapshot: {policy['snapshot_date']}. Policy can change at any time.")
+        st.link_button("Check current UKEF policy", policy["source_url"], width="stretch")
+        st.markdown("#### Early-warning signals")
+        if assessment.warnings:
+            for warning in assessment.warnings:
+                st.warning(warning)
+        else:
+            st.success("No severe model threshold triggered in the latest available readings.")
+
+    history = country_panel.loc[country_panel["country"] == selected_country].copy()
+    history = history.loc[history["indicator"].isin(["gdp_growth", "inflation", "current_account"])]
+    history["indicator"] = history["indicator"].str.replace("_", " ").str.title()
+    trend_fig = px.line(
+        history,
+        x="year",
+        y="value",
+        color="indicator",
+        markers=True,
+        labels={"value": "Indicator value (%)", "year": "", "indicator": ""},
+    )
+    trend_fig.update_layout(template=plot_template, height=360, margin={"t": 25})
+    st.plotly_chart(trend_fig, width="stretch")
+
+    brief = country_briefing(
+        selected_country,
+        assessment,
+        selected_limit["exposure_gbp_m"],
+        selected_limit["utilisation"],
+        vintage,
+        f"The public UKEF market-risk-appetite snapshot is {policy['market_risk_appetite']}",
+    )
+    st.download_button(
+        "Download country briefing",
+        data=brief,
+        file_name=f"{selected_country.lower().replace(' ', '_')}_country_brief.md",
+        mime="text/markdown",
+        width="stretch",
+    )
 
 with limits_tab:
     st.subheader("Country exposure limit monitor")

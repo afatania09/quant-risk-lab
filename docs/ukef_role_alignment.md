@@ -25,6 +25,8 @@ pricing methodologies.
 | Model development | Modular Python package with validation, deterministic seeds and tests |
 | Quality assurance | Input validation, reconciliation tests, model limitations and CI |
 | Committee communication | Downloadable executive risk report and decision-oriented dashboard |
+| Country risk analysis | Public macro/governance indicator monitor, early-warning thresholds, exposure interaction and downloadable country brief |
+| Reproducible research | Versioned World Bank and UKEF public-policy snapshots with refresh scripts and source dates |
 | Automation | One command runs the analysis; uploaded portfolios can replace example data |
 | Data science | Simulation, decomposition, sensitivity analysis and interactive visualisation |
 

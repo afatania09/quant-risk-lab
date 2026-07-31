@@ -11,8 +11,8 @@ work in export credit and operational research.**
 
 The centrepiece is an interactive dashboard for a fictional £3.8bn export-credit
 portfolio. It converts deal-level assumptions into country-limit monitoring,
-correlated claims, tail risk, IFRS 9 ECL, pricing adequacy, reinsurance analysis,
-reverse stress testing and a downloadable committee report.
+correlated claims, tail risk, public-data country risk monitoring, IFRS 9 ECL,
+pricing adequacy, reinsurance analysis, reverse stress testing and downloadable briefings.
 
 > This independent educational project is not affiliated with UK Export Finance.
 > It does not reproduce UKEF's proprietary PRISM methodology, use UKEF data or
@@ -23,6 +23,8 @@ reverse stress testing and a downloadable committee report.
 The application is organised around real portfolio-management questions:
 
 - Where are country and sector concentrations building?
+- Which macroeconomic and governance indicators warrant country-risk escalation?
+- How does an independent country-risk screen interact with exposure and limit headroom?
 - Which deals drive losses in severe simulations?
 - Which country limits are green, amber or breached?
 - How large are expected, unexpected and tail claims?
@@ -49,14 +51,16 @@ pip install -e ".[dashboard]"
 streamlit run dashboard/app.py
 ```
 
-The dashboard includes six decision views:
+The dashboard includes seven decision views:
 
 1. **Portfolio overview** — exposure, sector mix and deal-level tail contribution.
-2. **Country limits** — utilisation, headroom and traffic-light monitoring.
-3. **IFRS 9 ECL** — scenario-weighted 12-month and lifetime expected loss.
-4. **Pricing and reinsurance** — premium adequacy and risk-transfer comparison.
-5. **Reverse stress** — PD/LGD sensitivity and the threshold that breaches capacity.
-6. **Committee report** — concise findings and downloadable management information.
+2. **Country risk monitor** — public macro/governance indicators, transparent component
+   scores, early warnings, UKEF cover-policy context and downloadable country briefings.
+3. **Country limits** — utilisation, headroom and traffic-light monitoring.
+4. **IFRS 9 ECL** — scenario-weighted 12-month and lifetime expected loss.
+5. **Pricing and reinsurance** — premium adequacy and risk-transfer comparison.
+6. **Reverse stress** — PD/LGD sensitivity and the threshold that breaches capacity.
+7. **Committee report** — concise findings and downloadable management information.
 
 Users may upload a compatible CSV; the [data dictionary](docs/data_dictionary.md)
 defines the required fields.
@@ -68,6 +72,8 @@ defines the required fields.
 | Portfolio claims | Monte Carlo latent-factor model with global, country, sector and obligor risk |
 | Concentration | Country, sector, product and conditional tail-risk attribution |
 | Exposure limits | Country utilisation, headroom and red/amber/green monitoring |
+| Country risk | World Bank macro/governance panel, explainable score and early warnings |
+| Public policy context | Dated UKEF cover-policy snapshot with direct link to current source |
 | Reverse stress | Binary search for the LGD deterioration that breaches risk capacity |
 | IFRS 9 | Stage-sensitive, scenario-weighted 12-month and lifetime ECL |
 | Premium analysis | Expected loss + capital cost + operating cost adequacy |
@@ -111,6 +117,7 @@ python examples/export_credit_case_study.py
 The project includes:
 
 - [Export-credit model card](docs/export_credit_model_card.md)
+- [Country-risk methodology](docs/country_risk_methodology.md)
 - [UKEF role alignment](docs/ukef_role_alignment.md)
 - [Data dictionary](docs/data_dictionary.md)
 - [General model governance framework](docs/model_governance.md)
