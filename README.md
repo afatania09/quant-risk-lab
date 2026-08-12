@@ -9,10 +9,11 @@ work in export credit and operational research.**
 
 ![Export Credit Risk Lab dashboard](assets/export_credit_dashboard_preview.png)
 
-The centrepiece is an interactive dashboard for a fictional £3.8bn export-credit
+The centrepiece is an interactive dashboard for a fictional multi-country export-credit
 portfolio. It converts deal-level assumptions into country-limit monitoring,
 correlated claims, tail risk, public-data country risk monitoring, IFRS 9 ECL,
-pricing adequacy, reinsurance analysis, reverse stress testing and downloadable briefings.
+corporate credit underwriting, product-level cash-flow pricing, pricing adequacy,
+reinsurance analysis, reverse stress testing and downloadable briefings.
 
 > This independent educational project is not affiliated with UK Export Finance.
 > It does not reproduce UKEF's proprietary PRISM methodology, use UKEF data or
@@ -25,6 +26,9 @@ The application is organised around real portfolio-management questions:
 - Where are country and sector concentrations building?
 - Which macroeconomic and governance indicators warrant country-risk escalation?
 - How does an independent country-risk screen interact with exposure and limit headroom?
+- What obligor grade and PD follow from leverage, coverage, liquidity and profitability?
+- Which export-credit product matches the transaction and who is the risk entity?
+- What premium covers lifetime expected loss, economic capital and operating cost?
 - Which deals drive losses in severe simulations?
 - Which country limits are green, amber or breached?
 - How large are expected, unexpected and tail claims?
@@ -51,16 +55,18 @@ pip install -e ".[dashboard]"
 streamlit run dashboard/app.py
 ```
 
-The dashboard includes seven decision views:
+The dashboard includes nine decision views:
 
 1. **Portfolio overview** — exposure, sector mix and deal-level tail contribution.
 2. **Country risk monitor** — public macro/governance indicators, transparent component
    scores, early warnings, UKEF cover-policy context and downloadable country briefings.
-3. **Country limits** — utilisation, headroom and traffic-light monitoring.
-4. **IFRS 9 ECL** — scenario-weighted 12-month and lifetime expected loss.
-5. **Pricing and reinsurance** — premium adequacy and risk-transfer comparison.
-6. **Reverse stress** — PD/LGD sensitivity and the threshold that breaches capacity.
-7. **Committee report** — concise findings and downloadable management information.
+3. **Credit underwriting** — corporate scorecard, project-finance overlays, grade and PD.
+4. **Product pricer** — product selection, amortising exposure, EL, capital, premium and RAROC.
+5. **Country limits** — utilisation, headroom and traffic-light monitoring.
+6. **IFRS 9 ECL** — scenario-weighted 12-month and lifetime expected loss.
+7. **Pricing and reinsurance** — portfolio premium adequacy and risk-transfer comparison.
+8. **Reverse stress** — PD/LGD sensitivity and the threshold that breaches capacity.
+9. **Committee report** — concise findings and downloadable management information.
 
 Users may upload a compatible CSV; the [data dictionary](docs/data_dictionary.md)
 defines the required fields.
@@ -74,6 +80,10 @@ defines the required fields.
 | Exposure limits | Country utilisation, headroom and red/amber/green monitoring |
 | Country risk | World Bank macro/governance panel, explainable score and early warnings |
 | Public policy context | Dated UKEF cover-policy snapshot with direct link to current source |
+| Obligor underwriting | Ratio scorecard, country overlay, warning flags and indicative PD grade |
+| Project finance | Completion, offtake and debt-service-coverage PD overlays |
+| Product selection | Six buyer finance, insurance and exporter guarantee structures |
+| Deal pricing | Amortising cash flows, lifetime EL, economic capital, costs, floor and RAROC |
 | Reverse stress | Binary search for the LGD deterioration that breaches risk capacity |
 | IFRS 9 | Stage-sensitive, scenario-weighted 12-month and lifetime ECL |
 | Premium analysis | Expected loss + capital cost + operating cost adequacy |
@@ -118,6 +128,7 @@ The project includes:
 
 - [Export-credit model card](docs/export_credit_model_card.md)
 - [Country-risk methodology](docs/country_risk_methodology.md)
+- [Credit underwriting and pricing methodology](docs/credit_underwriting_and_pricing.md)
 - [UKEF role alignment](docs/ukef_role_alignment.md)
 - [Data dictionary](docs/data_dictionary.md)
 - [General model governance framework](docs/model_governance.md)

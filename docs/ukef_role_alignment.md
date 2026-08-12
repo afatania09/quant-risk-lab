@@ -27,6 +27,9 @@ pricing methodologies.
 | Committee communication | Downloadable executive risk report and decision-oriented dashboard |
 | Country risk analysis | Public macro/governance indicator monitor, early-warning thresholds, exposure interaction and downloadable country brief |
 | Reproducible research | Versioned World Bank and UKEF public-policy snapshots with refresh scripts and source dates |
+| Credit analysis | Explainable corporate scorecard, financial-ratio drivers, PD grades and project-finance overlays |
+| Product knowledge | Buyer finance, direct lending, insurance, working-capital and bond-support decision catalogue |
+| Pricing | Cash-flow-level expected loss, economic capital, cost allocation, external MPR floor and RAROC |
 | Automation | One command runs the analysis; uploaded portfolios can replace example data |
 | Data science | Simulation, decomposition, sensitivity analysis and interactive visualisation |
 

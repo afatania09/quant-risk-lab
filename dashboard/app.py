@@ -22,7 +22,14 @@ from quant_risk.export_credit_finance import (
     premium_adequacy,
     scenario_weighted_ecl,
 )
+from quant_risk.product_pricing import (
+    PRODUCTS,
+    price_export_credit,
+    product_catalogue,
+    shortlist_products,
+)
 from quant_risk.reporting import executive_risk_report
+from quant_risk.underwriting import assess_corporate_obligor, project_finance_pd
 
 ROOT = Path(__file__).resolve().parents[1]
 PORTFOLIO_PATH = ROOT / "data" / "synthetic_export_credit_portfolio.csv"
@@ -134,10 +141,22 @@ metric_columns[4].metric(
     "Limit watch list", f"{(limits['status'] != 'Green').sum()} countries"
 )
 
-overview, country_tab, limits_tab, ifrs_tab, pricing_tab, stress_tab, report_tab = st.tabs(
+(
+    overview,
+    country_tab,
+    underwriting_tab,
+    pricer_tab,
+    limits_tab,
+    ifrs_tab,
+    pricing_tab,
+    stress_tab,
+    report_tab,
+) = st.tabs(
     [
         "Portfolio overview",
         "Country risk monitor",
+        "Credit underwriting",
+        "Product pricer",
         "Country limits",
         "IFRS 9 ECL",
         "Pricing & reinsurance",
@@ -330,6 +349,164 @@ with country_tab:
         file_name=f"{selected_country.lower().replace(' ', '_')}_country_brief.md",
         mime="text/markdown",
         width="stretch",
+    )
+
+with underwriting_tab:
+    st.subheader("Corporate and project credit underwriting")
+    st.caption(
+        "A transparent financial-ratio scorecard converts obligor fundamentals and the "
+        "country overlay into an indicative grade and annual PD. Inputs are illustrative."
+    )
+    u1, u2, u3, u4 = st.columns(4)
+    debt_ebitda = u1.number_input("Debt / EBITDA", 0.0, 15.0, 3.0, 0.25)
+    interest_cover = u2.number_input("EBITDA / interest", 0.1, 20.0, 4.0, 0.25)
+    dscr = u3.number_input("Debt-service coverage", 0.1, 5.0, 1.4, 0.05)
+    current_ratio = u4.number_input("Current ratio", 0.1, 5.0, 1.3, 0.1)
+    u5, u6, u7, u8 = st.columns(4)
+    operating_margin = u5.number_input("Operating margin", -0.5, 0.6, 0.12, 0.01, format="%.2f")
+    revenue_growth = u6.number_input("Revenue growth", -0.5, 0.8, 0.05, 0.01, format="%.2f")
+    underwriting_country = u7.selectbox("Country overlay", available_countries, key="uw_country")
+    years_trading = u8.number_input("Years trading", 1, 100, 10)
+    uw_values, _ = latest_country_values(country_panel, underwriting_country)
+    uw_country_score = assess_country(uw_values).score
+    credit = assess_corporate_obligor(
+        debt_to_ebitda=debt_ebitda,
+        interest_coverage=interest_cover,
+        debt_service_coverage=dscr,
+        current_ratio=current_ratio,
+        operating_margin=operating_margin,
+        revenue_growth=revenue_growth,
+        country_risk_score=uw_country_score,
+        years_trading=years_trading,
+    )
+    m1, m2, m3, m4 = st.columns(4)
+    m1.metric("Obligor score", f"{credit.score:.1f} / 100")
+    m2.metric("Indicative grade", credit.grade)
+    m3.metric("Base annual PD", f"{credit.one_year_pd:.2%}")
+    m4.metric("Country overlay", f"{uw_country_score:.1f} / 100")
+
+    project_toggle = st.toggle("Apply project-finance overlays")
+    pricing_pd = credit.one_year_pd
+    if project_toggle:
+        p1, p2 = st.columns(2)
+        completion = p1.select_slider("Completion risk", ["Low", "Medium", "High"], value="Medium")
+        offtake = p2.select_slider("Offtake strength", ["Strong", "Adequate", "Weak"], value="Adequate")
+        pricing_pd = project_finance_pd(credit.one_year_pd, dscr, completion, offtake)
+        st.metric("PD after project overlays", f"{pricing_pd:.2%}")
+    credit_fig = px.bar(
+        credit.components.sort_values("contribution"), x="contribution", y="component",
+        orientation="h", color="risk_score", color_continuous_scale=teal_scale,
+        hover_data={"raw_value": ":.2f", "weight": ":.0%", "risk_score": ":.1f"},
+        labels={"contribution": "Weighted score contribution", "component": ""},
+    )
+    credit_fig.update_layout(template=plot_template, height=420, margin={"t": 20})
+    st.plotly_chart(credit_fig, width="stretch")
+    if credit.flags:
+        st.markdown("#### Underwriting flags")
+        for flag in credit.flags:
+            st.warning(flag)
+
+with pricer_tab:
+    st.subheader("Export-credit product selector and economic pricer")
+    st.caption(
+        "Prices an amortising covered exposure from expected loss, economic capital and "
+        "operating cost. It is an independent demonstration—not UKEF's internal model."
+    )
+    s1, s2, s3 = st.columns([1.5, 1, 1])
+    deal_need = s1.selectbox(
+        "What does the transaction need?",
+        [
+            "Finance an overseas buyer", "Protect exporter from non-payment",
+            "Provide exporter working capital", "Support a contract bond",
+        ],
+    )
+    selection_amount = s2.number_input("Selection amount (£m)", 1.0, 2_000.0, 100.0)
+    selection_tenor = s3.number_input("Selection term (years)", 0.5, 30.0, 5.0, 0.5)
+    shortlist = shortlist_products(deal_need, selection_amount, selection_tenor)
+    st.dataframe(
+        shortlist.style.format({"fit_score": "{:.0f} / 100"}),
+        hide_index=True, width="stretch",
+    )
+    selected_product = st.selectbox(
+        "Product to price", list(PRODUCTS),
+        index=list(PRODUCTS).index(shortlist.iloc[0]["product"]), key="pricing_product",
+    )
+    details = PRODUCTS[selected_product]
+    st.markdown(
+        f'<div class="decision-card"><b>{selected_product}</b><br>{details["purpose"]}<br>'
+        f'<b>Risk entity:</b> {details["risk_entity"]} · <b>Charge:</b> '
+        f'{details["pricing_basis"]}</div>', unsafe_allow_html=True,
+    )
+    d1, d2, d3, d4 = st.columns(4)
+    deal_amount = d1.number_input("Facility / contract amount (£m)", 1.0, 2_000.0, 100.0, 5.0)
+    deal_pd = d2.number_input("Annual PD", 0.0001, 0.50, 0.02, 0.0025, format="%.4f")
+    deal_lgd = d3.number_input("LGD", 0.0, 1.0, 0.50, 0.05)
+    cover_share = d4.number_input(
+        "Covered share", 0.0, 1.0, float(details["typical_cover"]), 0.05
+    )
+    d5, d6, d7, d8 = st.columns(4)
+    tenor = d5.number_input("Total tenor (years)", 1.0, 30.0, 8.0, 0.5)
+    drawdown = d6.number_input("Drawdown period (years)", 0.0, 10.0, 1.0, 0.5)
+    profile = d7.selectbox("Repayment profile", ["Equal principal", "Bullet"])
+    external_floor = d8.number_input(
+        "External MPR floor (upfront)", 0.0, 1.0, 0.0, 0.005, format="%.3f",
+        help="Optional user-supplied floor. The app does not calculate the official OECD MPR.",
+    )
+    priced = price_export_credit(
+        product=selected_product, amount_gbp_m=deal_amount, annual_pd=deal_pd,
+        lgd=deal_lgd, tenor_years=tenor, guarantee_share=cover_share,
+        drawdown_years=drawdown, repayment_profile=profile,
+        oecd_mpr_floor_rate=external_floor,
+    )
+    q1, q2, q3, q4, q5 = st.columns(5)
+    q1.metric("Covered exposure", f"£{priced.exposure_gbp_m:,.1f}m")
+    q2.metric("Lifetime expected loss", f"£{priced.expected_loss_gbp_m:,.2f}m")
+    q3.metric("Economic capital", f"£{priced.economic_capital_gbp_m:,.2f}m")
+    q4.metric("Required premium", f"£{priced.required_premium_gbp_m:,.2f}m")
+    q5.metric("Quoted upfront rate", f"{priced.quoted_upfront_rate:.2%}")
+    st.markdown(
+        f'<div class="decision-card"><b>Equivalent annual spread:</b> '
+        f'{priced.equivalent_annual_spread_bps:,.0f} bps · <b>Illustrative RAROC:</b> '
+        f'{priced.risk_adjusted_return:.1%} · <b>Binding basis:</b> '
+        f'{"external floor" if priced.floor_upfront_rate > priced.model_upfront_rate else "economic model"}'
+        f'</div>', unsafe_allow_html=True,
+    )
+    exposure_fig = px.area(
+        priced.schedule, x="year", y="opening_exposure_gbp_m",
+        labels={"year": "Year", "opening_exposure_gbp_m": "Outstanding exposure (£m)"},
+    )
+    exposure_fig.update_traces(line_color="#70e1c1", fillcolor="rgba(112,225,193,.22)")
+    exposure_fig.update_layout(template=plot_template, height=350, margin={"t": 20})
+    st.plotly_chart(exposure_fig, width="stretch")
+    st.markdown("#### PD × LGD premium sensitivity")
+    sensitivity = []
+    for pd_multiplier in [0.5, 1.0, 1.5, 2.0]:
+        for lgd_multiplier in [0.75, 1.0, 1.25, 1.5]:
+            stressed_price = price_export_credit(
+                product=selected_product, amount_gbp_m=deal_amount,
+                annual_pd=min(deal_pd * pd_multiplier, 0.999),
+                lgd=min(deal_lgd * lgd_multiplier, 1.0), tenor_years=tenor,
+                guarantee_share=cover_share, drawdown_years=drawdown,
+                repayment_profile=profile, oecd_mpr_floor_rate=external_floor,
+            )
+            sensitivity.append(
+                {"PD multiplier": pd_multiplier, "LGD multiplier": lgd_multiplier,
+                 "Required premium rate": stressed_price.model_upfront_rate}
+            )
+    sensitivity_table = pd.DataFrame(sensitivity).pivot(
+        index="LGD multiplier", columns="PD multiplier", values="Required premium rate"
+    )
+    sensitivity_fig = px.imshow(
+        sensitivity_table, text_auto=".1%", color_continuous_scale=teal_scale,
+        labels={"x": "PD multiplier", "y": "LGD multiplier", "color": "Model rate"},
+    )
+    sensitivity_fig.update_layout(template=plot_template, height=380)
+    st.plotly_chart(sensitivity_fig, width="stretch")
+    with st.expander("Compare supported product structures"):
+        st.dataframe(product_catalogue(), hide_index=True, width="stretch")
+    st.download_button(
+        "Download pricing cash flows", priced.schedule.to_csv(index=False),
+        "illustrative_export_credit_price.csv", "text/csv", width="stretch",
     )
 
 with limits_tab:
