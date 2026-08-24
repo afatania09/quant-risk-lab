@@ -4,41 +4,55 @@
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-70e1c1)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-438ca3)](LICENSE)
 
-**A decision oriented portfolio risk simulator built to demonstrate technical
-work in export credit and operational research.**
+**A portfolio-grade quantitative risk analytics laboratory spanning market, credit, liquidity, counterparty, concentration, stress-testing and export-credit risk.**
 
 ![Export Credit Risk Lab dashboard](assets/export_credit_dashboard_preview.png)
 
-The centrepiece is an interactive dashboard for a fictional multi-country export-credit
-portfolio. It converts deal-level assumptions into country-limit monitoring,
-correlated claims, tail risk, public-data country risk monitoring, IFRS 9 ECL,
-corporate credit underwriting, product-level cash-flow pricing, pricing adequacy,
-reinsurance analysis, reverse stress testing and downloadable briefings.
+Quant Risk Lab is designed as a reusable Python risk engine rather than a collection of disconnected notebooks. It combines transparent statistical models, portfolio diagnostics, model validation, stress testing and decision-oriented reporting with an interactive export-credit case study.
 
 > This independent educational project is not affiliated with UK Export Finance.
 > It does not reproduce UKEF's proprietary PRISM methodology, use UKEF data or
 > implement official OECD premium rules.
 
-## Why this is useful
+## Core quantitative capabilities
 
-The application is organised around real portfolio-management questions:
+| Risk domain | Capability |
+|---|---|
+| **Market risk** | Historical, delta-normal, Monte Carlo and filtered historical VaR/ES |
+| **Risk attribution** | Euler component VaR and volatility risk contributions |
+| **Portfolio construction** | Annualised volatility, diversification ratio and effective number of risk bets |
+| **Concentration risk** | HHI, effective positions and top-1/top-5 exposure concentration |
+| **Drawdown risk** | Maximum drawdown, peak-to-trough duration and recovery diagnostics |
+| **Model validation** | Kupiec coverage, Christoffersen independence and conditional-coverage testing |
+| **VaR governance** | Indicative Basel 250-day green/yellow/red exception classification |
+| **Liquidity risk** | Liquidation horizon, liquidity-adjusted VaR and stressed bid-ask liquidation cost |
+| **Credit risk** | PD × LGD × EAD expected loss and structural Merton default probability |
+| **Credit portfolio risk** | Rating migration, correlated credit losses and credit VaR/ES |
+| **Counterparty risk** | Unilateral CVA, bilateral CVA/DVA and simplified collateral treatment |
+| **Stress testing** | Historical and hypothetical factor shocks plus reverse stress testing |
+| **IFRS 9** | Stage-sensitive, scenario-weighted 12-month and lifetime ECL |
+| **Export credit** | Country limits, underwriting, pricing adequacy, reinsurance and tail-loss analysis |
 
-- Where are country and sector concentrations building?
-- Which macroeconomic and governance indicators warrant country-risk escalation?
-- How does an independent country-risk screen interact with exposure and limit headroom?
-- What obligor grade and PD follow from leverage, coverage, liquidity and profitability?
-- Which export-credit product matches the transaction and who is the risk entity?
-- What premium covers lifetime expected loss, economic capital and operating cost?
-- Which deals drive losses in severe simulations?
-- Which country limits are green, amber or breached?
-- How large are expected, unexpected and tail claims?
-- What deterioration in recovery assumptions exhausts risk capacity?
-- How does IFRS 9 ECL change across macroeconomic scenarios and stages?
-- Does illustrative premium cover expected loss, capital and operating cost?
-- Does reinsurance reduce tail loss enough to justify its cost?
-- How can results be communicated clearly to a risk committee?
+## Why this repo is useful
 
-## Interactive dashboard
+The project is built around questions a risk analyst, portfolio manager or model reviewer might actually need to answer:
+
+- What are the portfolio's 95% and 99% VaR and Expected Shortfall under competing methodologies?
+- Do VaR exceptions occur at the expected rate, and do they cluster?
+- Which positions contribute most to volatility and tail risk?
+- Is apparent diversification genuine, or is risk concentrated in a few effective bets?
+- How concentrated is exposure by name, country, sector or product?
+- How severe have historical drawdowns been and how long did recovery take?
+- How many days would positions take to liquidate under participation constraints?
+- How much does stressed market liquidity add to measured risk?
+- What happens to credit losses under correlated defaults and rating migration?
+- How large is counterparty valuation adjustment under changing default assumptions?
+- Which stresses exhaust risk capacity?
+- How do credit, country and product assumptions translate into export-credit pricing and capital decisions?
+
+## Interactive export-credit dashboard
+
+The repository includes a Streamlit application built around a fictional multi-country export-credit portfolio. It converts deal-level assumptions into country-limit monitoring, correlated claims, tail-risk attribution, country-risk screening, IFRS 9 ECL, underwriting, product pricing, reinsurance analysis, reverse stress testing and committee-style reporting.
 
 Install and launch:
 
@@ -46,11 +60,6 @@ Install and launch:
 git clone https://github.com/afatania09/quant-risk-lab.git
 cd quant-risk-lab
 python -m venv .venv
-```
-
-Activate the environment, then:
-
-```bash
 pip install -e ".[dashboard]"
 streamlit run dashboard/app.py
 ```
@@ -58,73 +67,46 @@ streamlit run dashboard/app.py
 The dashboard includes nine decision views:
 
 1. **Portfolio overview** — exposure, sector mix and deal-level tail contribution.
-2. **Country risk monitor** — public macro/governance indicators, transparent component
-   scores, early warnings, UKEF cover-policy context and downloadable country briefings.
+2. **Country risk monitor** — public macro/governance indicators and early warnings.
 3. **Credit underwriting** — corporate scorecard, project-finance overlays, grade and PD.
-4. **Product pricer** — product selection, amortising exposure, EL, capital, premium and RAROC.
+4. **Product pricer** — amortising exposure, expected loss, capital, premium and RAROC.
 5. **Country limits** — utilisation, headroom and traffic-light monitoring.
 6. **IFRS 9 ECL** — scenario-weighted 12-month and lifetime expected loss.
 7. **Pricing and reinsurance** — portfolio premium adequacy and risk-transfer comparison.
-8. **Reverse stress** — PD/LGD sensitivity and the threshold that breaches capacity.
-9. **Committee report** — concise findings and downloadable management information.
+8. **Reverse stress** — PD/LGD sensitivity and capacity breach thresholds.
+9. **Committee report** — concise management information and downloadable outputs.
 
-Users may upload a compatible CSV; the [data dictionary](docs/data_dictionary.md)
-defines the required fields.
+Users may upload a compatible CSV; the [data dictionary](docs/data_dictionary.md) defines the required fields.
 
-## Export-credit analytics
+## Example Python API
 
-| Capability | Implementation |
-|---|---|
-| Portfolio claims | Monte Carlo latent-factor model with global, country, sector and obligor risk |
-| Concentration | Country, sector, product and conditional tail-risk attribution |
-| Exposure limits | Country utilisation, headroom and red/amber/green monitoring |
-| Country risk | World Bank macro/governance panel, explainable score and early warnings |
-| Public policy context | Dated UKEF cover-policy snapshot with direct link to current source |
-| Obligor underwriting | Ratio scorecard, country overlay, warning flags and indicative PD grade |
-| Project finance | Completion, offtake and debt-service-coverage PD overlays |
-| Product selection | Six buyer finance, insurance and exporter guarantee structures |
-| Deal pricing | Amortising cash flows, lifetime EL, economic capital, costs, floor and RAROC |
-| Reverse stress | Binary search for the LGD deterioration that breaches risk capacity |
-| IFRS 9 | Stage-sensitive, scenario-weighted 12-month and lifetime ECL |
-| Premium analysis | Expected loss + capital cost + operating cost adequacy |
-| Risk transfer | Quota-share and excess-of-loss reinsurance structures |
-| Reporting | Automated committee-style Markdown and CSV downloads |
-| Quality control | Schema validation, deterministic simulations and reconciliation tests |
+```python
+import numpy as np
+import pandas as pd
 
-The included dataset contains 24 entirely fictional deals across aviation,
-transport, energy, healthcare, telecommunications, technology and infrastructure.
-Real country names make concentration analysis intelligible; deal values and risk
-parameters do not describe actual UKEF business.
+from quant_risk import (
+    historical_var_es,
+    marginal_risk_contribution,
+    diversification_ratio,
+    concentration_metrics,
+    liquidity_adjusted_var,
+)
 
-## Wider quantitative risk library
+returns = pd.DataFrame(...)
+positions = np.array([4_000_000, 3_000_000, 2_000_000])
 
-The repository also retains a broader set of tested analytics:
-
-- Historical, parametric, Monte Carlo and filtered historical VaR
-- Expected Shortfall
-- Rolling VaR forecasts
-- Euler component VaR
-- Kupiec coverage and Christoffersen independence tests
-- Historical and hypothetical stress testing
-- PD × LGD × EAD expected loss
-- Merton structural default probability
-- Credit migration and Gaussian-copula portfolio losses
-- Unilateral and bilateral CVA/DVA with simplified collateral
-
-These modules show general quantitative foundations; the export-credit dashboard
-shows how to turn them into a useful business process.
-
-## Run the analysis without the dashboard
-
-```bash
-pip install -e ".[dev]"
-pytest
-python examples/export_credit_case_study.py
+var_99, es_99 = historical_var_es(returns, positions, confidence=0.99)
+contrib = marginal_risk_contribution(returns, positions / positions.sum())
+div_ratio = diversification_ratio(returns, positions / positions.sum())
+concentration = concentration_metrics(pd.Series(np.abs(positions)))
+liquidity_var = liquidity_adjusted_var(var_99, horizon_days=5)
 ```
 
-## Model governance
+## Model governance and validation
 
-The project includes:
+The repository intentionally separates model calculation from model governance. Validation tooling now includes unconditional coverage, independence and joint conditional-coverage testing for VaR exceptions, while model documentation records assumptions, use limitations and required controls.
+
+Included documentation:
 
 - [Export-credit model card](docs/export_credit_model_card.md)
 - [Country-risk methodology](docs/country_risk_methodology.md)
@@ -134,25 +116,42 @@ The project includes:
 - [General model governance framework](docs/model_governance.md)
 - [Risk interview guide](docs/interview_guide.md)
 
-The design makes limitations visible. A Gaussian factor model, fixed PD/LGD
-assumptions and simplified reinsurance cannot substitute for approved production
-methodology, controlled data, independent validation or expert judgement.
+## Testing
+
+```bash
+pip install -e ".[dev]"
+pytest
+```
+
+Tests cover numerical behaviour, risk decomposition reconciliation, concentration metrics, liquidity calculations, backtesting statistics, export-credit simulations, underwriting and pricing logic.
 
 ## Repository structure
 
 ```text
-dashboard/                 interactive decision dashboard
-data/                      synthetic portfolio and IFRS 9 scenarios
-src/quant_risk/            reusable market, credit and export-risk engine
+src/quant_risk/
+  market.py               VaR, ES, filtered historical simulation and component VaR
+  portfolio.py            volatility, diversification, drawdown and concentration analytics
+  liquidity.py            liquidation horizon and liquidity-adjusted risk
+  validation.py           Kupiec and Christoffersen backtesting diagnostics
+  credit.py               expected loss and structural default modelling
+  credit_portfolio.py     migration and correlated portfolio credit losses
+  cva.py                  counterparty valuation adjustment
+  stress.py               historical and hypothetical stress testing
+  export_credit*.py       export-credit simulation, ECL, pricing and reinsurance
+
+dashboard/                interactive decision dashboard
+data/                      synthetic and public-context datasets
 examples/                  executable case studies
-tests/                     numerical, behavioural and reconciliation tests
-docs/                      model cards, governance and role alignment
+tests/                     numerical and behavioural test suite
+docs/                      methodology, governance and model documentation
 assets/                    generated visual preview
-.github/workflows/         automated tests and code-quality checks
+.github/workflows/         CI tests
 ```
+
+## Roadmap
+
+Planned extensions include EVT tail modelling, GARCH volatility forecasting, liquidity-adjusted Expected Shortfall, factor-based scenario generation, FRTB-style sensitivities, credit concentration capital and richer backtesting diagnostics.
 
 ## Disclaimer
 
-This software is provided for education, research and portfolio demonstration.
-It is not financial, investment, accounting, regulatory, underwriting or
-professional advice. No liability is accepted for decisions made using it.
+This software is provided for education, research and portfolio demonstration. It is not financial, investment, accounting, regulatory, underwriting or professional advice. No liability is accepted for decisions made using it.
