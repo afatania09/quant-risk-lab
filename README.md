@@ -10,6 +10,15 @@
 
 Quant Risk Lab is designed as a reusable Python risk engine rather than a collection of disconnected notebooks. It combines transparent statistical models, portfolio diagnostics, model validation, stress testing and decision-oriented reporting with an interactive export-credit case study.
 
+## Public portfolio context
+
+This repository is the **Python risk and model-governance** component of a wider public portfolio:
+
+- [C++ Quantitative Finance Library](https://github.com/afatania09/cpp-quant-finance-library) — C++20 derivatives pricing, Heston modelling, Monte Carlo, calibration, fixed income and portfolio-risk analytics.
+- [UK Property Valuation](https://github.com/afatania09/uk-property-valuation) — transparent Python property-valuation calculations and valuation-method implementations.
+
+The three projects are intentionally complementary: native numerical finance in C++, risk analytics and model validation in Python, and domain-specific valuation software.
+
 > This independent educational project is not affiliated with UK Export Finance.
 > It does not reproduce UKEF's proprietary PRISM methodology, use UKEF data or
 > implement official OECD premium rules.
