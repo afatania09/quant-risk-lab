@@ -41,6 +41,9 @@ The three projects are intentionally complementary: native numerical finance in 
 | **Stress testing** | Historical and hypothetical factor shocks plus reverse stress testing |
 | **IFRS 9** | Stage-sensitive, scenario-weighted 12-month and lifetime ECL |
 | **Export credit** | Country limits, underwriting, pricing adequacy, reinsurance and tail-loss analysis |
+| **Monthly risk process** | Exact EL movement attribution, multi-year claims and cash-flow projection |
+| **Active portfolio management** | Budget-constrained reinsurance allocation and value-for-money ranking |
+| **Operational controls** | Monte Carlo convergence testing and management-information Excel export |
 
 ## Why this repo is useful
 
@@ -73,7 +76,7 @@ pip install -e ".[dashboard]"
 streamlit run dashboard/app.py
 ```
 
-The dashboard includes nine decision views:
+The dashboard includes twelve decision views:
 
 1. **Portfolio overview** — exposure, sector mix and deal-level tail contribution.
 2. **Country risk monitor** — public macro/governance indicators and early warnings.
@@ -83,7 +86,10 @@ The dashboard includes nine decision views:
 6. **IFRS 9 ECL** — scenario-weighted 12-month and lifetime expected loss.
 7. **Pricing and reinsurance** — portfolio premium adequacy and risk-transfer comparison.
 8. **Reverse stress** — PD/LGD sensitivity and capacity breach thresholds.
-9. **Committee report** — concise management information and downloadable outputs.
+9. **Monthly operations** — risk movement waterfall and 15-year claims/cash-flow forecast.
+10. **Active portfolio management** — budget-constrained reinsurance allocation.
+11. **Model validation** — Monte Carlo convergence and numerical stability controls.
+12. **Committee report** — narrative reporting and downloadable Excel management information.
 
 Users may upload a compatible CSV; the [data dictionary](docs/data_dictionary.md) defines the required fields.
 
@@ -120,6 +126,7 @@ Included documentation:
 - [Export-credit model card](docs/export_credit_model_card.md)
 - [Country-risk methodology](docs/country_risk_methodology.md)
 - [Credit underwriting and pricing methodology](docs/credit_underwriting_and_pricing.md)
+- [Monthly portfolio process](docs/monthly_portfolio_process.md)
 - [UKEF role alignment](docs/ukef_role_alignment.md)
 - [Data dictionary](docs/data_dictionary.md)
 - [General model governance framework](docs/model_governance.md)
@@ -159,7 +166,9 @@ assets/                    generated visual preview
 
 ## Roadmap
 
-Planned extensions include EVT tail modelling, GARCH volatility forecasting, liquidity-adjusted Expected Shortfall, factor-based scenario generation, FRTB-style sensitivities, credit concentration capital and richer backtesting diagnostics.
+Planned extensions include sovereign transition calibration, parameter-uncertainty analysis,
+optimisation under multiple country and sector constraints, and controlled ingestion of additional
+public macroeconomic data.
 
 ## Disclaimer
 
