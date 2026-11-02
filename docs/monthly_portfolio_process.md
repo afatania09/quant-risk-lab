@@ -10,7 +10,7 @@ independent educational design and does not reproduce UKEF's PRISM process or in
 3. Attribute movement to new business, exits, exposure run-off, cover, PD and LGD.
 4. Project surviving exposure, premium, claims and delayed recoveries over 15 years.
 5. Recalculate country-limit utilisation and portfolio tail risk.
-6. Rank candidate reinsurance transactions by estimated tail-risk reduction per pound spent.
+6. Optimise candidate reinsurance transactions subject to total-budget, country and sector limits.
 7. Test Monte Carlo convergence against a larger benchmark run.
 8. Export a controlled management-information workbook and committee narrative.
 
@@ -31,10 +31,13 @@ transparent scenario assumptions, not forecasts of UKEF claims or recoveries.
 
 ## Active Portfolio Management
 
-The allocator ranks illustrative quota-share transactions using tail-risk reduction per unit of
-reinsurance cost and respects a user-selected budget. A production optimisation would also include
-counterparty credit quality, legal eligibility, capacity constraints, pricing uncertainty,
-diversification effects and approval policy.
+The allocator uses mixed-integer optimisation to select whole-deal illustrative quota-share
+transactions. It maximises estimated tail-risk reduction subject to a total budget and configurable
+maximum programme spend in any one country or sector. The dashboard reports the resulting programme
+concentration and headroom created.
+
+A production optimisation would also include counterparty credit quality, legal eligibility,
+reinsurer capacity, pricing uncertainty, diversification effects and approval policy.
 
 ## Validation
 
@@ -42,3 +45,8 @@ The convergence view reruns the loss model at increasing sample sizes with a fix
 VaR and Expected Shortfall with the largest run and assigns an indicative control status. Production
 validation would additionally require independent implementation, realised-outcome monitoring,
 parameter validation, change control and formal approval.
+
+The dashboard also compares the multi-factor portfolio model with an independently structured
+one-factor Gaussian challenger. Differences in expected loss, VaR and Expected Shortfall are shown
+explicitly. A difference is treated as a prompt for investigation rather than proof that either
+model is correct.

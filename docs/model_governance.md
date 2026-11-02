@@ -27,6 +27,14 @@ limits and an escalation process.
 7. **Stress testing** — assess crises and severe hypothetical shocks outside ordinary VaR.
 8. **Limitations and overlays** — record weaknesses and apply expert overlays transparently.
 
+### Challenger-model comparison
+
+The export-credit workflow compares its multi-factor country/sector dependence model with a simpler
+one-factor Gaussian challenger. Expected loss, loss-at-risk and Expected Shortfall are calculated
+on the same portfolio, confidence level, simulation count and random seed. Material differences
+must be investigated through assumptions, dependence structure, sampling stability and exposure
+concentration; they are not automatically resolved in favour of the primary model.
+
 ## Governance example
 
 An institution might set a daily 99% VaR limit and an Expected Shortfall limit,

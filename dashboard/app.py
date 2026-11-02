@@ -30,6 +30,11 @@ from quant_risk.portfolio_operations import (
     optimise_reinsurance,
     risk_movement_attribution,
 )
+from quant_risk.portfolio_optimisation import (
+    challenger_model_comparison,
+    optimise_risk_transfer,
+    risk_transfer_concentration,
+)
 from quant_risk.product_pricing import (
     PRODUCTS,
     price_export_credit,
@@ -744,11 +749,20 @@ with operations_tab:
     )
 
 with apm_tab:
-    st.subheader("Active Portfolio Management allocator")
+    st.subheader("Constrained Active Portfolio Management allocator")
     reinsurance_budget = st.slider("Illustrative reinsurance budget (£m)", 2.0, 30.0, 15.0, 1.0)
-    apm = optimise_reinsurance(
+    constraint_1, constraint_2 = st.columns(2)
+    max_country_share = constraint_1.slider(
+        "Maximum programme spend per country", 15, 100, 35, 5, format="%d%%"
+    ) / 100
+    max_sector_share = constraint_2.slider(
+        "Maximum programme spend per sector", 15, 100, 40, 5, format="%d%%"
+    ) / 100
+    apm = optimise_risk_transfer(
         portfolio,
         budget_gbp_m=reinsurance_budget,
+        max_country_budget_share=max_country_share,
+        max_sector_budget_share=max_sector_share,
         simulations=min(simulations, 12_000),
     )
     selected = apm[apm["recommended"]]
@@ -782,6 +796,24 @@ with apm_tab:
         ],
         width="stretch",
         hide_index=True,
+    )
+    programme_concentration = risk_transfer_concentration(apm)
+    if not programme_concentration.empty:
+        concentration_fig = px.bar(
+            programme_concentration,
+            x="name",
+            y="cost_share",
+            color="dimension",
+            barmode="group",
+            labels={"name": "Country / sector", "cost_share": "Programme cost share"},
+        )
+        concentration_fig.update_layout(
+            template=plot_template, height=390, yaxis_tickformat=".0%", xaxis_tickangle=-25
+        )
+        st.plotly_chart(concentration_fig, width="stretch")
+    st.caption(
+        "The mixed-integer optimiser maximises estimated tail-risk reduction while enforcing "
+        "the selected total-budget, country and sector concentration constraints."
     )
 
 with sovereign_tab:
@@ -909,6 +941,36 @@ with validation_tab:
         unsafe_allow_html=True,
     )
     st.dataframe(convergence, width="stretch", hide_index=True)
+    st.markdown("#### Independent challenger model")
+    challenger = challenger_model_comparison(
+        portfolio, simulations=min(simulations, 25_000), confidence=confidence
+    )
+    challenger_long = challenger.melt(
+        id_vars="model",
+        value_vars=["expected_loss_gbp_m", "loss_var_gbp_m", "expected_shortfall_gbp_m"],
+        var_name="metric",
+        value_name="loss_gbp_m",
+    )
+    challenger_fig = px.bar(
+        challenger_long,
+        x="metric",
+        y="loss_gbp_m",
+        color="model",
+        barmode="group",
+        labels={"metric": "", "loss_gbp_m": "Portfolio loss (£m)", "model": "Model"},
+    )
+    challenger_fig.update_layout(template=plot_template, height=410)
+    st.plotly_chart(challenger_fig, width="stretch")
+    challenger_var_gap = challenger.iloc[1]["loss_var_gbp_m_difference_pct"]
+    challenge_status = "Green" if abs(challenger_var_gap) <= 0.10 else "Amber"
+    st.markdown(
+        f'<div class="decision-card"><b>Challenger comparison: {challenge_status}.</b> '
+        f'The one-factor challenger differs from the multi-factor primary VaR by '
+        f'<b>{challenger_var_gap:+.1%}</b>. A material difference is a prompt for model '
+        f'challenge, not automatic evidence that either model is correct.</div>',
+        unsafe_allow_html=True,
+    )
+    st.dataframe(challenger, width="stretch", hide_index=True)
 
 with report_tab:
     report = executive_risk_report(clean, simulation)

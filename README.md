@@ -42,8 +42,8 @@ The three projects are intentionally complementary: native numerical finance in 
 | **IFRS 9** | Stage-sensitive, scenario-weighted 12-month and lifetime ECL |
 | **Export credit** | Country limits, underwriting, pricing adequacy, reinsurance and tail-loss analysis |
 | **Monthly risk process** | Exact EL movement attribution, multi-year claims and cash-flow projection |
-| **Active portfolio management** | Budget-constrained reinsurance allocation and value-for-money ranking |
-| **Operational controls** | Monte Carlo convergence testing and management-information Excel export |
+| **Active portfolio management** | Mixed-integer risk-transfer optimisation with country/sector constraints |
+| **Operational controls** | Monte Carlo convergence, challenger models and management-information export |
 | **Sovereign migration** | Multi-year country-grade paths, stressed transitions and cumulative default loss |
 | **Scenario analysis** | Recession, sovereign, commodity and physical-climate portfolio stresses |
 | **Parameter risk** | PD/LGD estimation uncertainty and expected-loss confidence intervals |
@@ -90,9 +90,9 @@ The dashboard includes thirteen decision views:
 7. **Pricing and reinsurance** — portfolio premium adequacy and risk-transfer comparison.
 8. **Reverse stress** — PD/LGD sensitivity and capacity breach thresholds.
 9. **Monthly operations** — risk movement waterfall and 15-year claims/cash-flow forecast.
-10. **Active portfolio management** — budget-constrained reinsurance allocation.
+10. **Active portfolio management** — constrained reinsurance optimisation and diversification.
 11. **Sovereign scenarios** — macro-credit stresses, grade migration and parameter uncertainty.
-12. **Model validation** — Monte Carlo convergence and numerical stability controls.
+12. **Model validation** — convergence, numerical stability and independent challenger comparison.
 13. **Committee report** — narrative reporting and downloadable Excel management information.
 
 Users may upload a compatible CSV; the [data dictionary](docs/data_dictionary.md) defines the required fields.
@@ -160,6 +160,7 @@ src/quant_risk/
   stress.py               historical and hypothetical stress testing
   export_credit*.py       export-credit simulation, ECL, pricing and reinsurance
   sovereign_scenarios.py  grade migration, macro-credit scenarios and parameter risk
+  portfolio_optimisation.py constrained risk-transfer and challenger-model analytics
 
 dashboard/                interactive decision dashboard
 data/                      synthetic and public-context datasets
@@ -172,9 +173,8 @@ assets/                    generated visual preview
 
 ## Roadmap
 
-Planned extensions include optimisation under multiple country and sector constraints, challenger
-calibration using approved external transition data, and controlled ingestion of additional public
-macroeconomic data.
+Planned extensions include challenger calibration using approved external transition data,
+multi-period optimisation and controlled ingestion of additional public macroeconomic data.
 
 ## Disclaimer
 

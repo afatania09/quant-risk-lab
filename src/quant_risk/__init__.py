@@ -49,6 +49,11 @@ from .portfolio_operations import (
     optimise_reinsurance,
     risk_movement_attribution,
 )
+from .portfolio_optimisation import (
+    challenger_model_comparison,
+    optimise_risk_transfer,
+    risk_transfer_concentration,
+)
 from .sovereign_scenarios import (
     illustrative_transition_matrix,
     macro_scenario_comparison,
@@ -71,6 +76,7 @@ __all__ = [
     "backtest_var",
     "basel_traffic_light",
     "bilateral_cva_dva",
+    "challenger_model_comparison",
     "christoffersen_conditional_coverage_test",
     "christoffersen_independence_test",
     "collateralised_exposure",
@@ -103,6 +109,7 @@ __all__ = [
     "monthly_risk_bridge",
     "multi_year_cashflows",
     "optimise_reinsurance",
+    "optimise_risk_transfer",
     "parameter_uncertainty",
     "parametric_var_es",
     "portfolio_volatility",
@@ -110,6 +117,7 @@ __all__ = [
     "reverse_stress_lgd_multiplier",
     "risk_contributions",
     "risk_movement_attribution",
+    "risk_transfer_concentration",
     "rolling_historical_var",
     "scenario_weighted_ecl",
     "simulate_credit_losses",
