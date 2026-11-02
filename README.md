@@ -44,6 +44,9 @@ The three projects are intentionally complementary: native numerical finance in 
 | **Monthly risk process** | Exact EL movement attribution, multi-year claims and cash-flow projection |
 | **Active portfolio management** | Budget-constrained reinsurance allocation and value-for-money ranking |
 | **Operational controls** | Monte Carlo convergence testing and management-information Excel export |
+| **Sovereign migration** | Multi-year country-grade paths, stressed transitions and cumulative default loss |
+| **Scenario analysis** | Recession, sovereign, commodity and physical-climate portfolio stresses |
+| **Parameter risk** | PD/LGD estimation uncertainty and expected-loss confidence intervals |
 
 ## Why this repo is useful
 
@@ -76,7 +79,7 @@ pip install -e ".[dashboard]"
 streamlit run dashboard/app.py
 ```
 
-The dashboard includes twelve decision views:
+The dashboard includes thirteen decision views:
 
 1. **Portfolio overview** — exposure, sector mix and deal-level tail contribution.
 2. **Country risk monitor** — public macro/governance indicators and early warnings.
@@ -88,8 +91,9 @@ The dashboard includes twelve decision views:
 8. **Reverse stress** — PD/LGD sensitivity and capacity breach thresholds.
 9. **Monthly operations** — risk movement waterfall and 15-year claims/cash-flow forecast.
 10. **Active portfolio management** — budget-constrained reinsurance allocation.
-11. **Model validation** — Monte Carlo convergence and numerical stability controls.
-12. **Committee report** — narrative reporting and downloadable Excel management information.
+11. **Sovereign scenarios** — macro-credit stresses, grade migration and parameter uncertainty.
+12. **Model validation** — Monte Carlo convergence and numerical stability controls.
+13. **Committee report** — narrative reporting and downloadable Excel management information.
 
 Users may upload a compatible CSV; the [data dictionary](docs/data_dictionary.md) defines the required fields.
 
@@ -127,6 +131,7 @@ Included documentation:
 - [Country-risk methodology](docs/country_risk_methodology.md)
 - [Credit underwriting and pricing methodology](docs/credit_underwriting_and_pricing.md)
 - [Monthly portfolio process](docs/monthly_portfolio_process.md)
+- [Sovereign migration and scenario methodology](docs/sovereign_scenario_methodology.md)
 - [UKEF role alignment](docs/ukef_role_alignment.md)
 - [Data dictionary](docs/data_dictionary.md)
 - [General model governance framework](docs/model_governance.md)
@@ -154,6 +159,7 @@ src/quant_risk/
   cva.py                  counterparty valuation adjustment
   stress.py               historical and hypothetical stress testing
   export_credit*.py       export-credit simulation, ECL, pricing and reinsurance
+  sovereign_scenarios.py  grade migration, macro-credit scenarios and parameter risk
 
 dashboard/                interactive decision dashboard
 data/                      synthetic and public-context datasets
@@ -166,9 +172,9 @@ assets/                    generated visual preview
 
 ## Roadmap
 
-Planned extensions include sovereign transition calibration, parameter-uncertainty analysis,
-optimisation under multiple country and sector constraints, and controlled ingestion of additional
-public macroeconomic data.
+Planned extensions include optimisation under multiple country and sector constraints, challenger
+calibration using approved external transition data, and controlled ingestion of additional public
+macroeconomic data.
 
 ## Disclaimer
 

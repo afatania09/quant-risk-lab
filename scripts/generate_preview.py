@@ -10,6 +10,7 @@ from quant_risk.export_credit import (
     country_limit_report,
     simulate_export_credit_losses,
 )
+from quant_risk.sovereign_scenarios import macro_scenario_comparison
 
 ROOT = Path(__file__).resolve().parents[1]
 portfolio = pd.read_csv(ROOT / "data" / "synthetic_export_credit_portfolio.csv")
@@ -18,6 +19,7 @@ countries = concentration_report(portfolio, "country").head(8).sort_values(
     "exposure_gbp_m"
 )
 limits = country_limit_report(portfolio).head(10)
+scenario_results = macro_scenario_comparison(portfolio, simulations=20_000)
 
 plt.style.use("dark_background")
 figure = plt.figure(figsize=(16, 9), facecolor="#07111f")
@@ -34,7 +36,7 @@ figure.text(
 figure.text(
     0.05,
     0.855,
-    "Fictional 24-deal portfolio · correlated claims · country limits · IFRS 9 · pricing · stress",
+    "Fictional 24-deal portfolio · country migration · macro scenarios · pricing · validation",
     color="#9fb2c7",
     fontsize=11,
 )
@@ -57,14 +59,14 @@ country_ax.set_xlabel("Covered exposure (£m)", color="#8fa4bb")
 country_ax.grid(axis="x", color="#203957", alpha=0.6)
 country_ax.spines[:].set_visible(False)
 
-hist_ax = figure.add_subplot(grid[5:8, 13:24], facecolor="#0c1a2c")
-hist_ax.hist(simulation.losses, bins=45, color="#438ca3", alpha=0.9)
-hist_ax.axvline(simulation.loss_var, color="#ff788c", linestyle="--", label="99.5% loss-at-risk")
-hist_ax.set_title("Simulated portfolio claims", loc="left", fontsize=13, weight="bold")
-hist_ax.set_xlabel("Loss (£m)", color="#8fa4bb")
-hist_ax.set_yticks([])
-hist_ax.legend(frameon=False, fontsize=8)
-hist_ax.spines[:].set_visible(False)
+scenario_ax = figure.add_subplot(grid[5:8, 13:24], facecolor="#0c1a2c")
+scenario_plot = scenario_results.sort_values("loss_var_gbp_m")
+scenario_ax.barh(scenario_plot["scenario"], scenario_plot["loss_var_gbp_m"], color="#438ca3")
+scenario_ax.set_title("Macro-scenario loss-at-risk", loc="left", fontsize=13, weight="bold")
+scenario_ax.set_xlabel("99.5% loss-at-risk (£m)", color="#8fa4bb")
+scenario_ax.tick_params(axis="y", labelsize=7)
+scenario_ax.grid(axis="x", color="#203957", alpha=0.6)
+scenario_ax.spines[:].set_visible(False)
 
 limit_ax = figure.add_subplot(grid[9:12, 13:24], facecolor="#0c1a2c")
 limit_ax.barh(

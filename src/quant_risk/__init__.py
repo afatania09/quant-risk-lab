@@ -49,6 +49,13 @@ from .portfolio_operations import (
     optimise_reinsurance,
     risk_movement_attribution,
 )
+from .sovereign_scenarios import (
+    illustrative_transition_matrix,
+    macro_scenario_comparison,
+    migration_projection,
+    parameter_uncertainty,
+    stressed_transition_matrix,
+)
 from .stress import apply_factor_shocks, historical_stress
 from .validation import (
     basel_traffic_light,
@@ -80,19 +87,23 @@ __all__ = [
     "filtered_historical_var_es",
     "historical_stress",
     "historical_var_es",
+    "illustrative_transition_matrix",
     "kupiec_test",
     "liquidation_horizon",
     "liquidity_adjusted_var",
     "liquidity_profile",
+    "macro_scenario_comparison",
     "management_workbook",
     "marginal_risk_contribution",
     "merton_default_probability",
     "migrate_ratings",
+    "migration_projection",
     "monte_carlo_convergence",
     "monte_carlo_var_es",
     "monthly_risk_bridge",
     "multi_year_cashflows",
     "optimise_reinsurance",
+    "parameter_uncertainty",
     "parametric_var_es",
     "portfolio_volatility",
     "premium_adequacy",
@@ -104,6 +115,7 @@ __all__ = [
     "simulate_credit_losses",
     "simulate_export_credit_losses",
     "stressed_bid_ask_cost",
+    "stressed_transition_matrix",
     "unilateral_cva",
     "validate_export_portfolio",
 ]

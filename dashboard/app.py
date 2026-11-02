@@ -37,6 +37,11 @@ from quant_risk.product_pricing import (
     shortlist_products,
 )
 from quant_risk.reporting import executive_risk_report
+from quant_risk.sovereign_scenarios import (
+    macro_scenario_comparison,
+    migration_projection,
+    parameter_uncertainty,
+)
 from quant_risk.underwriting import assess_corporate_obligor, project_finance_pd
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -160,6 +165,7 @@ metric_columns[4].metric(
     stress_tab,
     operations_tab,
     apm_tab,
+    sovereign_tab,
     validation_tab,
     report_tab,
 ) = st.tabs(
@@ -174,6 +180,7 @@ metric_columns[4].metric(
         "Reverse stress",
         "Monthly operations",
         "Active portfolio management",
+        "Sovereign scenarios",
         "Model validation",
         "Committee report",
     ]
@@ -775,6 +782,101 @@ with apm_tab:
         ],
         width="stretch",
         hide_index=True,
+    )
+
+with sovereign_tab:
+    st.subheader("Sovereign migration and macro-credit scenarios")
+    scenario_results = macro_scenario_comparison(
+        portfolio,
+        simulations=min(simulations, 15_000),
+        confidence=confidence,
+    )
+    worst = scenario_results.iloc[0]
+    base = scenario_results.loc[scenario_results["scenario"] == "Base"].iloc[0]
+    c1, c2, c3 = st.columns(3)
+    c1.metric("Base loss-at-risk", f"£{base['loss_var_gbp_m']:,.1f}m")
+    c2.metric("Worst scenario", str(worst["scenario"]))
+    c3.metric(
+        "Worst-scenario increase",
+        f"£{worst['change_in_var_gbp_m']:,.1f}m",
+        f"{worst['change_in_var_pct']:.1%}",
+    )
+    scenario_long = scenario_results.melt(
+        id_vars="scenario",
+        value_vars=["expected_loss_gbp_m", "loss_var_gbp_m", "expected_shortfall_gbp_m"],
+        var_name="metric",
+        value_name="loss_gbp_m",
+    )
+    scenario_fig = px.bar(
+        scenario_long,
+        x="scenario",
+        y="loss_gbp_m",
+        color="metric",
+        barmode="group",
+        labels={"scenario": "", "loss_gbp_m": "Portfolio loss (£m)", "metric": "Metric"},
+    )
+    scenario_fig.update_layout(template=plot_template, height=440, xaxis_tickangle=-15)
+    st.plotly_chart(scenario_fig, width="stretch")
+
+    st.markdown("#### Five-year country-grade migration")
+    migration_stress = st.toggle("Apply stressed migration matrix", value=False)
+    grade_distribution, default_projection = migration_projection(
+        portfolio,
+        years=5,
+        simulations=min(simulations, 12_000),
+        stressed=migration_stress,
+    )
+    migration_fig = px.area(
+        grade_distribution,
+        x="year",
+        y="portfolio_share",
+        color="grade",
+        category_orders={"grade": ["1", "2", "3", "4", "5", "6", "7", "D"]},
+        labels={"year": "Projection year", "portfolio_share": "Simulated state share", "grade": "Grade"},
+    )
+    migration_fig.update_layout(
+        template=plot_template,
+        height=430,
+        yaxis_tickformat=".0%",
+        legend={"orientation": "h", "y": -0.25},
+    )
+    st.plotly_chart(migration_fig, width="stretch")
+    end_projection = default_projection.iloc[-1]
+    d1, d2 = st.columns(2)
+    d1.metric(
+        "Year-5 mean cumulative default loss",
+        f"£{end_projection['mean_cumulative_default_loss_gbp_m']:,.1f}m",
+    )
+    d2.metric(
+        "Year-5 95th percentile default loss",
+        f"£{end_projection['p95_cumulative_default_loss_gbp_m']:,.1f}m",
+    )
+
+    st.markdown("#### PD and LGD parameter uncertainty")
+    uncertainty = parameter_uncertainty(portfolio, draws=12_000)
+    uncertainty_fig = px.histogram(
+        x=uncertainty["draws"],
+        nbins=55,
+        labels={"x": "Portfolio expected loss (£m)", "y": "Frequency"},
+        color_discrete_sequence=["#70e1c1"],
+    )
+    uncertainty_fig.add_vline(
+        x=uncertainty["point_estimate_gbp_m"],
+        line_dash="dash",
+        line_color="#ffb86b",
+        annotation_text="Point estimate",
+    )
+    uncertainty_fig.update_layout(template=plot_template, height=380, showlegend=False)
+    st.plotly_chart(uncertainty_fig, width="stretch")
+    st.markdown(
+        f'<div class="decision-card"><b>90% parameter-uncertainty interval:</b> '
+        f'£{uncertainty["p05_gbp_m"]:,.1f}m to £{uncertainty["p95_gbp_m"]:,.1f}m. '
+        f'This measures uncertainty in PD and LGD estimates, separately from simulated default timing.</div>',
+        unsafe_allow_html=True,
+    )
+    st.caption(
+        "Transition probabilities and scenario multipliers are transparent illustrative assumptions; "
+        "they are not official UKEF, OECD or rating-agency calibrations."
     )
 
 with validation_tab:
