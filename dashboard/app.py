@@ -35,6 +35,11 @@ from quant_risk.portfolio_optimisation import (
     optimise_risk_transfer,
     risk_transfer_concentration,
 )
+from quant_risk.portfolio_planning import (
+    build_approved_portfolio,
+    evaluate_new_business_pipeline,
+    optimise_new_business_plan,
+)
 from quant_risk.product_pricing import (
     PRODUCTS,
     price_export_credit,
@@ -54,6 +59,7 @@ PORTFOLIO_PATH = ROOT / "data" / "synthetic_export_credit_portfolio.csv"
 SCENARIO_PATH = ROOT / "data" / "ifrs9_scenarios.csv"
 COUNTRY_RISK_PATH = ROOT / "data" / "country_risk_world_bank.csv"
 COVER_POLICY_PATH = ROOT / "data" / "ukef_cover_policy_snapshot.csv"
+PIPELINE_PATH = ROOT / "data" / "synthetic_new_business_pipeline.csv"
 
 st.set_page_config(
     page_title="Export Credit Risk Lab",
@@ -91,16 +97,19 @@ st.markdown(
 
 
 @st.cache_data
-def load_default_data() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+def load_default_data() -> tuple[
+    pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame
+]:
     return (
         pd.read_csv(PORTFOLIO_PATH),
         pd.read_csv(SCENARIO_PATH),
         pd.read_csv(COUNTRY_RISK_PATH),
         pd.read_csv(COVER_POLICY_PATH),
+        pd.read_csv(PIPELINE_PATH),
     )
 
 
-default_portfolio, scenarios, country_panel, cover_policy = load_default_data()
+default_portfolio, scenarios, country_panel, cover_policy, pipeline = load_default_data()
 
 st.sidebar.markdown("## Portfolio controls")
 uploaded = st.sidebar.file_uploader("Upload a compatible portfolio CSV", type="csv")
@@ -170,6 +179,7 @@ metric_columns[4].metric(
     stress_tab,
     operations_tab,
     apm_tab,
+    planning_tab,
     sovereign_tab,
     validation_tab,
     report_tab,
@@ -185,6 +195,7 @@ metric_columns[4].metric(
         "Reverse stress",
         "Monthly operations",
         "Active portfolio management",
+        "Portfolio planning",
         "Sovereign scenarios",
         "Model validation",
         "Committee report",
@@ -814,6 +825,100 @@ with apm_tab:
     st.caption(
         "The mixed-integer optimiser maximises estimated tail-risk reduction while enforcing "
         "the selected total-budget, country and sector concentration constraints."
+    )
+
+with planning_tab:
+    st.subheader("New-business portfolio planning")
+    plan_1, plan_2, plan_3 = st.columns(3)
+    commitment_budget = plan_1.number_input(
+        "New covered-exposure budget (£m)", min_value=0.0, value=500.0, step=25.0
+    )
+    var_headroom = plan_2.number_input(
+        "Incremental loss-at-risk headroom (£m)", min_value=0.0, value=150.0, step=10.0
+    )
+    strategic_weight = plan_3.number_input(
+        "Strategic score value (£m)", min_value=0.0, value=1.0, step=0.25
+    )
+    pipeline_evaluation = evaluate_new_business_pipeline(
+        portfolio,
+        pipeline,
+        simulations=min(simulations, 5_000),
+        confidence=confidence,
+    )
+    plan = optimise_new_business_plan(
+        portfolio,
+        pipeline_evaluation,
+        commitment_budget_gbp_m=commitment_budget,
+        var_headroom_gbp_m=var_headroom,
+        strategic_value_weight_gbp_m=strategic_weight,
+    )
+    approved = plan[plan["approved"]]
+    p1, p2, p3, p4 = st.columns(4)
+    p1.metric("Deals approved", f"{len(approved)} / {len(plan)}")
+    p2.metric("Covered exposure approved", f"£{approved['covered_ead_gbp_m'].sum():,.1f}m")
+    p3.metric("Incremental loss-at-risk", f"£{approved['incremental_var_gbp_m'].sum():,.1f}m")
+    p4.metric("Annual economic value", f"£{approved['annual_economic_value_gbp_m'].sum():,.2f}m")
+    plan_fig = px.scatter(
+        plan,
+        x="incremental_var_gbp_m",
+        y="annual_economic_value_gbp_m",
+        size="covered_ead_gbp_m",
+        color="decision",
+        hover_name="project",
+        hover_data=["deal_id", "country", "sector", "strategic_score"],
+        labels={
+            "incremental_var_gbp_m": "Incremental loss-at-risk (£m)",
+            "annual_economic_value_gbp_m": "Annual economic value (£m)",
+            "decision": "Decision",
+        },
+        color_discrete_map={"Approve": "#70e1c1", "Hold": "#6b7f96"},
+    )
+    plan_fig.update_layout(template=plot_template, height=460)
+    st.plotly_chart(plan_fig, width="stretch")
+    st.dataframe(
+        plan[
+            [
+                "deal_id",
+                "project",
+                "country",
+                "sector",
+                "covered_ead_gbp_m",
+                "incremental_var_gbp_m",
+                "annual_economic_value_gbp_m",
+                "strategic_score",
+                "decision",
+            ]
+        ],
+        width="stretch",
+        hide_index=True,
+    )
+    combined_plan = build_approved_portfolio(portfolio, pipeline, plan)
+    baseline_projection = multi_year_cashflows(portfolio)
+    approved_projection = multi_year_cashflows(combined_plan)
+    projection_comparison = pd.concat(
+        [
+            baseline_projection.assign(portfolio="Current portfolio"),
+            approved_projection.assign(portfolio="After approved pipeline"),
+        ],
+        ignore_index=True,
+    )
+    exposure_fig = px.line(
+        projection_comparison,
+        x="year",
+        y="surviving_exposure_gbp_m",
+        color="portfolio",
+        markers=True,
+        labels={
+            "year": "Projection year",
+            "surviving_exposure_gbp_m": "Surviving exposure (£m)",
+            "portfolio": "Portfolio",
+        },
+    )
+    exposure_fig.update_layout(template=plot_template, height=400)
+    st.plotly_chart(exposure_fig, width="stretch")
+    st.caption(
+        "Candidate transactions and strategic scores are fictional. The optimiser maximises "
+        "economic and strategic value subject to commitment, loss-at-risk and country-limit constraints."
     )
 
 with sovereign_tab:

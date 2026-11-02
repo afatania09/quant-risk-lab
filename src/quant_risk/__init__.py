@@ -54,6 +54,11 @@ from .portfolio_optimisation import (
     optimise_risk_transfer,
     risk_transfer_concentration,
 )
+from .portfolio_planning import (
+    build_approved_portfolio,
+    evaluate_new_business_pipeline,
+    optimise_new_business_plan,
+)
 from .sovereign_scenarios import (
     illustrative_transition_matrix,
     macro_scenario_comparison,
@@ -76,6 +81,7 @@ __all__ = [
     "backtest_var",
     "basel_traffic_light",
     "bilateral_cva_dva",
+    "build_approved_portfolio",
     "challenger_model_comparison",
     "christoffersen_conditional_coverage_test",
     "christoffersen_independence_test",
@@ -89,6 +95,7 @@ __all__ = [
     "diversification_ratio",
     "drawdown_statistics",
     "effective_number_of_bets",
+    "evaluate_new_business_pipeline",
     "expected_credit_loss",
     "filtered_historical_var_es",
     "historical_stress",
@@ -108,6 +115,7 @@ __all__ = [
     "monte_carlo_var_es",
     "monthly_risk_bridge",
     "multi_year_cashflows",
+    "optimise_new_business_plan",
     "optimise_reinsurance",
     "optimise_risk_transfer",
     "parameter_uncertainty",

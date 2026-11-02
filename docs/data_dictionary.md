@@ -1,5 +1,11 @@
 # Export Credit Portfolio Data Dictionary
 
+## New-business pipeline
+
+`data/synthetic_new_business_pipeline.csv` uses the standard portfolio fields below and adds
+`strategic_score`, an illustrative 0–100 score used by the portfolio-planning optimiser. All pipeline
+transactions and scores are fictional.
+
 | Field | Type | Meaning |
 |---|---|---|
 | `deal_id` | Text | Unique deal identifier |

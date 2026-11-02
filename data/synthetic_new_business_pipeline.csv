@@ -1,0 +1,11 @@
+deal_id,project,country,region,sector,product,ead_gbp_m,pd,lgd,guarantee_share,premium_rate,country_limit_gbp_m,maturity_years,ifrs9_stage,country_risk_grade,strategic_score
+NB001,Green metro expansion,India,Asia,Transport,Buyer credit guarantee,180,0.019,0.45,0.85,0.024,950,9,1,4,86
+NB002,Climate-resilient water network,Morocco,Africa,Water,Direct lending,125,0.024,0.50,0.90,0.030,480,10,1,4,93
+NB003,Hospital imaging programme,Poland,Europe and Central Asia,Healthcare,Export insurance,95,0.010,0.35,0.80,0.017,650,6,1,2,81
+NB004,Grid-scale battery components,South Africa,Africa,Renewable energy,Buyer credit guarantee,165,0.044,0.60,0.85,0.049,600,11,2,5,91
+NB005,Port electrification,Vietnam,Asia,Maritime,Direct lending,140,0.022,0.48,0.90,0.028,520,8,1,4,88
+NB006,Digital public infrastructure,Rwanda,Africa,Technology,Direct lending,70,0.048,0.60,0.90,0.052,220,8,2,6,96
+NB007,Sustainable aviation equipment,Indonesia,Asia,Aviation,Buyer credit guarantee,190,0.030,0.55,0.85,0.035,650,10,1,5,72
+NB008,Flood forecasting systems,Bangladesh,Asia,Water,Export insurance,85,0.055,0.62,0.80,0.057,360,7,2,6,95
+NB009,Industrial energy efficiency,Czechia,Europe and Central Asia,Manufacturing,Export insurance,90,0.009,0.35,0.75,0.016,550,5,1,2,79
+NB010,Cold-chain healthcare logistics,Colombia,Latin America,Logistics,Buyer credit guarantee,105,0.031,0.52,0.80,0.035,420,7,1,4,84
