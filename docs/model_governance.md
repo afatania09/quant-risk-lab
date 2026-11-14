@@ -27,6 +27,10 @@ limits and an escalation process.
 7. **Stress testing** — assess crises and severe hypothetical shocks outside ordinary VaR.
 8. **Limitations and overlays** — record weaknesses and apply expert overlays transparently.
 
+The dashboard's controlled-release view implements these principles through eight data-quality
+controls, an explicit Red/Amber/Green validation gate, a governed model inventory and a reproducible
+run manifest. See the [model assurance framework](model_assurance_framework.md).
+
 ### Challenger-model comparison
 
 The export-credit workflow compares its multi-factor country/sector dependence model with a simpler

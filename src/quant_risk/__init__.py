@@ -33,6 +33,13 @@ from .market import (
     parametric_var_es,
     rolling_historical_var,
 )
+from .model_assurance import (
+    assurance_gate,
+    assurance_report,
+    build_run_manifest,
+    data_quality_report,
+    model_inventory,
+)
 from .portfolio import (
     concentration_metrics,
     diversification_ratio,
@@ -78,10 +85,13 @@ __all__ = [
     "PortfolioSimulation",
     "apply_factor_shocks",
     "apply_reinsurance",
+    "assurance_gate",
+    "assurance_report",
     "backtest_var",
     "basel_traffic_light",
     "bilateral_cva_dva",
     "build_approved_portfolio",
+    "build_run_manifest",
     "challenger_model_comparison",
     "christoffersen_conditional_coverage_test",
     "christoffersen_independence_test",
@@ -92,6 +102,7 @@ __all__ = [
     "country_limit_report",
     "create_monthly_snapshot",
     "credit_var_es",
+    "data_quality_report",
     "diversification_ratio",
     "drawdown_statistics",
     "effective_number_of_bets",
@@ -111,6 +122,7 @@ __all__ = [
     "merton_default_probability",
     "migrate_ratings",
     "migration_projection",
+    "model_inventory",
     "monte_carlo_convergence",
     "monte_carlo_var_es",
     "monthly_risk_bridge",

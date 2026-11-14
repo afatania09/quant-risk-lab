@@ -1,5 +1,6 @@
 """Interactive Export Credit Portfolio Risk Dashboard."""
 
+import json
 from pathlib import Path
 
 import numpy as np
@@ -21,6 +22,13 @@ from quant_risk.export_credit_finance import (
     apply_reinsurance,
     premium_adequacy,
     scenario_weighted_ecl,
+)
+from quant_risk.model_assurance import (
+    assurance_gate,
+    assurance_report,
+    build_run_manifest,
+    data_quality_report,
+    model_inventory,
 )
 from quant_risk.portfolio_operations import (
     create_monthly_snapshot,
@@ -182,6 +190,7 @@ metric_columns[4].metric(
     planning_tab,
     sovereign_tab,
     validation_tab,
+    assurance_tab,
     report_tab,
 ) = st.tabs(
     [
@@ -198,6 +207,7 @@ metric_columns[4].metric(
         "Portfolio planning",
         "Sovereign scenarios",
         "Model validation",
+        "Model assurance",
         "Committee report",
     ]
 )
@@ -1076,6 +1086,61 @@ with validation_tab:
         unsafe_allow_html=True,
     )
     st.dataframe(challenger, width="stretch", hide_index=True)
+
+with assurance_tab:
+    st.subheader("Controlled model run and release gate")
+    quality = data_quality_report(portfolio)
+    assurance = assurance_gate(
+        quality,
+        convergence_gap_pct=final_gap,
+        challenger_var_gap_pct=float(challenger_var_gap * 100),
+    )
+    manifest = build_run_manifest(
+        portfolio,
+        confidence=confidence,
+        simulations=simulations,
+    )
+    assurance_markdown = assurance_report(assurance, manifest, quality)
+
+    g1, g2, g3, g4 = st.columns(4)
+    g1.metric("Release gate", assurance["rating"])
+    g2.metric("Decision", assurance["decision"])
+    g3.metric("Controls passed", f"{quality['status'].eq('Pass').sum()} / {len(quality)}")
+    g4.metric("Run ID", manifest["run_id"])
+    reasons = "<br>".join(f"• {reason}" for reason in assurance["reasons"])
+    st.markdown(
+        f'<div class="decision-card"><b>{assurance["rating"]}: '
+        f'{assurance["decision"]}</b><br>{reasons}</div>',
+        unsafe_allow_html=True,
+    )
+    st.markdown("#### Data-quality controls")
+    st.dataframe(quality, width="stretch", hide_index=True)
+    left, right = st.columns([1.1, 1])
+    with left:
+        st.markdown("#### Model inventory")
+        st.dataframe(model_inventory(), width="stretch", hide_index=True)
+    with right:
+        st.markdown("#### Reproducible run manifest")
+        st.json(manifest)
+    download_1, download_2 = st.columns(2)
+    download_1.download_button(
+        "Download assurance report",
+        data=assurance_markdown,
+        file_name=f"model_assurance_{manifest['run_id']}.md",
+        mime="text/markdown",
+        width="stretch",
+    )
+    download_2.download_button(
+        "Download run manifest",
+        data=json.dumps(manifest, indent=2),
+        file_name=f"run_manifest_{manifest['run_id']}.json",
+        mime="application/json",
+        width="stretch",
+    )
+    st.caption(
+        "The gate combines automated data controls with convergence and challenger-model "
+        "thresholds. It supports review; it does not replace accountable approval."
+    )
 
 with report_tab:
     report = executive_risk_report(clean, simulation)

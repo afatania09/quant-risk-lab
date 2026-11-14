@@ -48,6 +48,7 @@ The three projects are intentionally complementary: native numerical finance in 
 | **Scenario analysis** | Recession, sovereign, commodity and physical-climate portfolio stresses |
 | **Parameter risk** | PD/LGD estimation uncertainty and expected-loss confidence intervals |
 | **Portfolio planning** | Pipeline approval optimisation under risk-capacity and country-limit constraints |
+| **Model assurance** | Automated data controls, model inventory, release gates and reproducible run manifests |
 
 ## Why this repo is useful
 
@@ -80,7 +81,7 @@ pip install -e ".[dashboard]"
 streamlit run dashboard/app.py
 ```
 
-The dashboard includes fourteen decision views:
+The dashboard includes fifteen decision views:
 
 1. **Portfolio overview** — exposure, sector mix and deal-level tail contribution.
 2. **Country risk monitor** — public macro/governance indicators and early warnings.
@@ -95,7 +96,8 @@ The dashboard includes fourteen decision views:
 11. **Portfolio planning** — future-deal approval under exposure, risk and country constraints.
 12. **Sovereign scenarios** — macro-credit stresses, grade migration and parameter uncertainty.
 13. **Model validation** — convergence, numerical stability and independent challenger comparison.
-14. **Committee report** — narrative reporting and downloadable Excel management information.
+14. **Model assurance** — data controls, governed inventory, release gate and run manifest.
+15. **Committee report** — narrative reporting and downloadable Excel management information.
 
 Users may upload a compatible CSV; the [data dictionary](docs/data_dictionary.md) defines the required fields.
 
@@ -138,6 +140,7 @@ Included documentation:
 - [UKEF role alignment](docs/ukef_role_alignment.md)
 - [Data dictionary](docs/data_dictionary.md)
 - [General model governance framework](docs/model_governance.md)
+- [Model assurance and controlled release](docs/model_assurance_framework.md)
 - [Risk interview guide](docs/interview_guide.md)
 
 ## Testing
@@ -165,6 +168,7 @@ src/quant_risk/
   sovereign_scenarios.py  grade migration, macro-credit scenarios and parameter risk
   portfolio_optimisation.py constrained risk-transfer and challenger-model analytics
   portfolio_planning.py    pipeline evaluation and risk-capacity allocation
+  model_assurance.py       data controls, inventory, run manifests and release gates
 
 dashboard/                interactive decision dashboard
 data/                      synthetic portfolio, pipeline and public-context datasets
