@@ -55,6 +55,11 @@ from quant_risk.product_pricing import (
     shortlist_products,
 )
 from quant_risk.reporting import executive_risk_report
+from quant_risk.risk_appetite import (
+    deal_early_warning_register,
+    portfolio_risk_appetite,
+    risk_appetite_report,
+)
 from quant_risk.sovereign_scenarios import (
     macro_scenario_comparison,
     migration_projection,
@@ -178,6 +183,7 @@ metric_columns[4].metric(
 
 (
     overview,
+    appetite_tab,
     country_tab,
     underwriting_tab,
     pricer_tab,
@@ -195,6 +201,7 @@ metric_columns[4].metric(
 ) = st.tabs(
     [
         "Portfolio overview",
+        "Risk appetite & watch list",
         "Country risk monitor",
         "Credit underwriting",
         "Product pricer",
@@ -270,6 +277,81 @@ with overview:
         margin={"l": 10, "r": 10, "t": 10, "b": 10},
     )
     st.plotly_chart(contribution_fig, width="stretch")
+
+with appetite_tab:
+    st.subheader("Portfolio risk appetite and early-warning register")
+    appetite = portfolio_risk_appetite(
+        portfolio,
+        loss_var_gbp_m=simulation.loss_var,
+        expected_shortfall_gbp_m=simulation.expected_shortfall,
+        loss_capacity_gbp_m=loss_capacity,
+    )
+    watchlist = deal_early_warning_register(portfolio)
+    appetite_report = risk_appetite_report(appetite, watchlist)
+    appetite_counts = appetite["status"].value_counts()
+    watch_counts = watchlist["status"].value_counts()
+    overall_appetite = (
+        "Red" if appetite_counts.get("Red", 0) else
+        "Amber" if appetite_counts.get("Amber", 0) else "Green"
+    )
+    r1, r2, r3, r4 = st.columns(4)
+    r1.metric("Overall appetite", overall_appetite)
+    r2.metric("Red portfolio measures", int(appetite_counts.get("Red", 0)))
+    r3.metric("Red deal warnings", int(watch_counts.get("Red", 0)))
+    r4.metric("Amber deal warnings", int(watch_counts.get("Amber", 0)))
+    appetite_chart = px.bar(
+        appetite,
+        x="metric",
+        y="value",
+        color="status",
+        color_discrete_map={"Green": "#70e1c1", "Amber": "#ffb86b", "Red": "#ff6b6b"},
+        labels={"metric": "", "value": "Observed ratio", "status": "Status"},
+    )
+    appetite_chart.update_layout(
+        template=plot_template,
+        height=430,
+        xaxis_tickangle=-25,
+        yaxis_tickformat=".0%",
+    )
+    st.plotly_chart(appetite_chart, width="stretch")
+    st.dataframe(
+        appetite.style.format({"value": "{:.2%}", "red_headroom": "{:+.2%}"}),
+        width="stretch",
+        hide_index=True,
+    )
+    st.markdown("#### Deal early-warning register")
+    warning_filter = st.segmented_control(
+        "Watch-list filter", ["Red and Amber", "Red", "All"], default="Red and Amber"
+    )
+    if warning_filter == "Red":
+        displayed_watchlist = watchlist.loc[watchlist["status"].eq("Red")]
+    elif warning_filter == "All":
+        displayed_watchlist = watchlist
+    else:
+        displayed_watchlist = watchlist.loc[watchlist["status"].isin(["Red", "Amber"])]
+    st.dataframe(
+        displayed_watchlist.style.format(
+            {
+                "covered_ead_gbp_m": "£{:,.1f}m",
+                "pd": "{:.2%}",
+                "country_utilisation": "{:.1%}",
+                "pricing_cover": "{:.2f}x",
+            }
+        ),
+        width="stretch",
+        hide_index=True,
+    )
+    st.download_button(
+        "Download risk-appetite exception report",
+        data=appetite_report,
+        file_name="portfolio_risk_appetite_report.md",
+        mime="text/markdown",
+        width="stretch",
+    )
+    st.caption(
+        "Thresholds are transparent illustrative settings, not official UKEF risk appetite. "
+        "Red cases require documented review; Amber cases remain under monthly monitoring."
+    )
 
 with country_tab:
     st.subheader("Country risk and exposure monitor")

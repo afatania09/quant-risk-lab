@@ -66,6 +66,12 @@ from .portfolio_planning import (
     evaluate_new_business_pipeline,
     optimise_new_business_plan,
 )
+from .risk_appetite import (
+    RiskAppetiteLimits,
+    deal_early_warning_register,
+    portfolio_risk_appetite,
+    risk_appetite_report,
+)
 from .sovereign_scenarios import (
     illustrative_transition_matrix,
     macro_scenario_comparison,
@@ -83,6 +89,7 @@ from .validation import (
 
 __all__ = [
     "PortfolioSimulation",
+    "RiskAppetiteLimits",
     "apply_factor_shocks",
     "apply_reinsurance",
     "assurance_gate",
@@ -103,6 +110,7 @@ __all__ = [
     "create_monthly_snapshot",
     "credit_var_es",
     "data_quality_report",
+    "deal_early_warning_register",
     "diversification_ratio",
     "drawdown_statistics",
     "effective_number_of_bets",
@@ -132,9 +140,11 @@ __all__ = [
     "optimise_risk_transfer",
     "parameter_uncertainty",
     "parametric_var_es",
+    "portfolio_risk_appetite",
     "portfolio_volatility",
     "premium_adequacy",
     "reverse_stress_lgd_multiplier",
+    "risk_appetite_report",
     "risk_contributions",
     "risk_movement_attribution",
     "risk_transfer_concentration",

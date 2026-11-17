@@ -49,6 +49,7 @@ The three projects are intentionally complementary: native numerical finance in 
 | **Parameter risk** | PD/LGD estimation uncertainty and expected-loss confidence intervals |
 | **Portfolio planning** | Pipeline approval optimisation under risk-capacity and country-limit constraints |
 | **Model assurance** | Automated data controls, model inventory, release gates and reproducible run manifests |
+| **Risk appetite** | Portfolio thresholds, breach escalation and transparent deal-level early warnings |
 
 ## Why this repo is useful
 
@@ -81,23 +82,24 @@ pip install -e ".[dashboard]"
 streamlit run dashboard/app.py
 ```
 
-The dashboard includes fifteen decision views:
+The dashboard includes sixteen decision views:
 
 1. **Portfolio overview** — exposure, sector mix and deal-level tail contribution.
-2. **Country risk monitor** — public macro/governance indicators and early warnings.
-3. **Credit underwriting** — corporate scorecard, project-finance overlays, grade and PD.
-4. **Product pricer** — amortising exposure, expected loss, capital, premium and RAROC.
-5. **Country limits** — utilisation, headroom and traffic-light monitoring.
-6. **IFRS 9 ECL** — scenario-weighted 12-month and lifetime expected loss.
-7. **Pricing and reinsurance** — portfolio premium adequacy and risk-transfer comparison.
-8. **Reverse stress** — PD/LGD sensitivity and capacity breach thresholds.
-9. **Monthly operations** — risk movement waterfall and 15-year claims/cash-flow forecast.
-10. **Active portfolio management** — constrained reinsurance optimisation and diversification.
-11. **Portfolio planning** — future-deal approval under exposure, risk and country constraints.
-12. **Sovereign scenarios** — macro-credit stresses, grade migration and parameter uncertainty.
-13. **Model validation** — convergence, numerical stability and independent challenger comparison.
-14. **Model assurance** — data controls, governed inventory, release gate and run manifest.
-15. **Committee report** — narrative reporting and downloadable Excel management information.
+2. **Risk appetite and watch list** — thresholds, headroom, breaches and deal escalation.
+3. **Country risk monitor** — public macro/governance indicators and early warnings.
+4. **Credit underwriting** — corporate scorecard, project-finance overlays, grade and PD.
+5. **Product pricer** — amortising exposure, expected loss, capital, premium and RAROC.
+6. **Country limits** — utilisation, headroom and traffic-light monitoring.
+7. **IFRS 9 ECL** — scenario-weighted 12-month and lifetime expected loss.
+8. **Pricing and reinsurance** — portfolio premium adequacy and risk-transfer comparison.
+9. **Reverse stress** — PD/LGD sensitivity and capacity breach thresholds.
+10. **Monthly operations** — risk movement waterfall and 15-year claims/cash-flow forecast.
+11. **Active portfolio management** — constrained reinsurance optimisation and diversification.
+12. **Portfolio planning** — future-deal approval under exposure, risk and country constraints.
+13. **Sovereign scenarios** — macro-credit stresses, grade migration and parameter uncertainty.
+14. **Model validation** — convergence, numerical stability and independent challenger comparison.
+15. **Model assurance** — data controls, governed inventory, release gate and run manifest.
+16. **Committee report** — narrative reporting and downloadable Excel management information.
 
 Users may upload a compatible CSV; the [data dictionary](docs/data_dictionary.md) defines the required fields.
 
@@ -141,6 +143,7 @@ Included documentation:
 - [Data dictionary](docs/data_dictionary.md)
 - [General model governance framework](docs/model_governance.md)
 - [Model assurance and controlled release](docs/model_assurance_framework.md)
+- [Risk appetite and early-warning framework](docs/risk_appetite_framework.md)
 - [Risk interview guide](docs/interview_guide.md)
 
 ## Testing
@@ -169,6 +172,7 @@ src/quant_risk/
   portfolio_optimisation.py constrained risk-transfer and challenger-model analytics
   portfolio_planning.py    pipeline evaluation and risk-capacity allocation
   model_assurance.py       data controls, inventory, run manifests and release gates
+  risk_appetite.py         portfolio limits, early warnings and escalation reporting
 
 dashboard/                interactive decision dashboard
 data/                      synthetic portfolio, pipeline and public-context datasets
